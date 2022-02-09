@@ -5,7 +5,7 @@
 
 <main>
 	<div class="container">
-		<img src="./images/logo.png" alt="logo" width="75%" style="display: block; margin: auto">
+		<img src="../images/logo.png" alt="logo" width="75%" style="display: block; margin: auto">
 		<form action = "commit.php" method = "post">
 			<div class="form-group">
 				<label class="col-sm-2 col-form-label"><a href="../index.php" class="btn btn-success">Go Back</a></label>
