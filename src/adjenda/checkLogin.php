@@ -1,8 +1,7 @@
 <?php session_start(); //Resumes the session ?>
-<?php 
-	require('/model/database.php'); //PDO Connection
-	require_once('/model/stuFunctions.php'); //Student Functions
-	require_once('/model/instrFunctions.php'); //Instructor Functions
+<?php
+	require_once('model/stuFunctions.php'); //Student Functions
+	require_once('model/instrFunctions.php'); //Instructor Functions
 ?>
 
 <?php

@@ -17,11 +17,11 @@
 			</div>
 			<div class="form-group">
                 <p style="text-align:center">Already have an account?</p>
-				<button type="submit" class="btn btn-primary" style="display: block; margin: auto; width: 25%">Login</button>
+				<button type="submit" class="btn btn-primary" style="display: block; margin: auto;">Login</button>
 			</div>
 			<div class="form-group">
 				<p style="text-align:center">Need an Account?</p>
-				<a href="register/register.php" class="btn btn-success" style="display: block; margin: auto; width: 25%">Sign Up</a>
+				<button type="button" onclick="document.location='register/register.php'" class="btn btn-success" style="display: block; margin: auto;">Sign Up</a>
 			</div>
 			<!--Checks if success variable has been set in session array,
 				and if so displays the defined message-->

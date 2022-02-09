@@ -6,11 +6,13 @@
     } 
 ?>
 
+<?php require_once('database.php'); ?>
+
 <?php
 // Retrieves all students from database
 function getStudents() {
     global $db;
-    $query = 'SELECT * FROM STUDENTS';
+    $query = 'SELECT * FROM Students';
     $statement = $db->prepare($query);
     $statement->execute();
     $students = $statement->fetchAll();
@@ -39,15 +41,17 @@ function checkStuEmail($email){
 // Inserts a new student into the database
 function addStudent($email,$fname,$lname,$hashedPass){
     global $db;
+    $verified = 0;
     $query = 'INSERT INTO STUDENTS
                  (email, fname, lname, pass, verified)
               VALUES
-                (:email, :fname, :lname, :hashedPass)';
+                (:email, :fname, :lname, :hashedPass, :verified)';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
     $statement->bindValue(':fname', $fname);
     $statement->bindValue(':lname', $lname);
-    $statement->bindValue(':pass', $hashedPass);
+    $statement->bindValue(':hashedPass', $hashedPass);
+    $statement->bindValue(':verified', $verified);
     $statement->execute();
     $statement->closeCursor();
 }

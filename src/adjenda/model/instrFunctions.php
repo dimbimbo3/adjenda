@@ -6,6 +6,8 @@
     } 
 ?>
 
+<?php require_once('database.php'); ?>
+
 <?php
 // Retrieves all students from database
 function getInstructors() {
@@ -37,7 +39,7 @@ function checkInstrEmail($email){
 }
 
 // Updates the account password associated with the given instructor email
-function updateStuPass($hashedPass, $instrEmail){
+function updateInstrPass($hashedPass, $instrEmail){
 	global $db;
     $query = 'UPDATE INSTRUCTORS
               SET pass = :hashedPass

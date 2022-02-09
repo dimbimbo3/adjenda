@@ -1,19 +1,10 @@
-#email:invalid{
+input:invalid{
 	background-color: #CED4DA
 }
-#email:focus{
-background-color: #FFFFFF
-}
-#email:valid {
-	background-color: #E8F0FE
-}
-#pass:invalid{
-	background-color: #CED4DA
-}
-#pass:focus{
+input:focus{
 	background-color: #FFFFFF
 }
-#pass:valid {
+input:valid {
 	background-color: #E8F0FE
 }
 header {

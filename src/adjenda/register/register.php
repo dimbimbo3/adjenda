@@ -8,7 +8,7 @@
 		<img src="../images/logo.png" alt="logo" width="75%" style="display: block; margin: auto">
 		<form action = "commit.php" method = "post">
 			<div class="form-group">
-				<label class="col-sm-2 col-form-label"><a href="../index.php" class="btn btn-success">Go Back</a></label>
+				<a href="../index.php" class="btn btn-success">Exit</a>
 			</div>
 			<!--Checks if error variable has been set in session array,
 				and if so displays the defined message-->
@@ -19,32 +19,22 @@
 			?>
 			<div class="form-group">
 				<label for="email">Email:</label>
-				<div class="col-sm-10">
-					<input type="email" class="form-control" id="email" name="email" placeholder="Enter email" pattern="[A-Za-z0-9]+.edu" required>
-				</div>
+				<input type="email" class="form-control" id="email" name="email" placeholder="Enter email" pattern=".+edu" required>
 			</div>
 			<div class="form-group">
 				<label for="fname">First Name:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="fname" name="fname" placeholder="Enter first name" pattern="[A-Za-z]+" required>
-				</div>
+				<input type="text" class="form-control" id="fname" name="fname" placeholder="Enter first name" pattern="[A-Za-z]+" required>
 			</div>
 			<div class="form-group">
 				<label for="lname">Last Name:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="lname" name="lname" placeholder="Enter last name" pattern="[A-Za-z]+" required>
-				</div>
+				<input type="text" class="form-control" id="lname" name="lname" placeholder="Enter last name" pattern="[A-Za-z]+" required>
 			</div>
 			<div class="form-group">
 				<label for="pass">Password:</label>
-				<div class="col-sm-10">
-					<input type="password" class = "form-control" id="pass" name="pass" placeholder="Enter password" required>
-				</div>
+				<input type="password" class = "form-control" id="pass" name="pass" placeholder="Enter password" required>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-10">
-					<button type="submit" class="btn btn-primary">Submit</button>
-				</div>
+				<button type="submit" class="btn btn-primary" style="display: block; margin: auto;">Submit</button>
 			</div>
 		</form>
 		<!--Unsets error variable in session arrray-->
