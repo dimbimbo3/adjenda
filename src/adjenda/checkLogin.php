@@ -15,7 +15,7 @@
 // Retrieves array of students from database
 	$students = getStudents();
 	
-// Compares email from form with emails from database, if found
+// Compares email from form with student emails from database, if found
 // then compares the pass from form with the hashed password from database
 	$foundStu = false;
 	foreach($students as $student){
@@ -29,8 +29,9 @@
 	
 // Checks if the email/password combination was found
 	if($foundStu == true){
-		// Sets name variable in session array
+		// Sets account variables in session array
 		$_SESSION["accType"] = "S";
+		$_SESSION["accEmail"] = $email;
 		echo "<script> document.location='dashboard/dash.php'; </script>";
 	}
 // If not, then checks if the user is an instructor
@@ -38,7 +39,7 @@
 		// Retrieves array of instructors from database
 			$instructors = getInstructors();
 			
-		// Compares email from form with emails from database, if found
+		// Compares email from form with instructor emails from database, if found
 		// then compares the pass from form with the password from database
 			$foundInstr = false;
 			foreach($instructors as $instructor){
@@ -52,8 +53,9 @@
 			
 		// Checks if the email/password combination was found
 			if($foundInstr == true){
-				// Sets name variable in session array
+				// Sets account variables in session array
 				$_SESSION["accType"] = "I";
+				$_SESSION["accEmail"] = $email;
 				echo "<script> document.location='dashboard/dash.php'; </script>";
 			}
 			else{
