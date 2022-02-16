@@ -1,7 +1,7 @@
 <?php session_start(); //Resumes the session ?>
 <?php
-	require_once('model/stuFunctions.php'); //Student Functions
-	require_once('model/instrFunctions.php'); //Instructor Functions
+	require_once('../model/stuFunctions.php'); //Student Functions
+	require_once('../model/instrFunctions.php'); //Instructor Functions
 ?>
 
 <?php
@@ -32,7 +32,7 @@
 		// Sets account variables in session array
 		$_SESSION["accType"] = "S";
 		$_SESSION["accEmail"] = $email;
-		echo "<script> document.location='dashboard/dash.php'; </script>";
+		echo "<script> document.location='../dashboard/dash.php'; </script>";
 	}
 // If not, then checks if the user is an instructor
 	else{
@@ -56,13 +56,13 @@
 				// Sets account variables in session array
 				$_SESSION["accType"] = "I";
 				$_SESSION["accEmail"] = $email;
-				echo "<script> document.location='dashboard/dash.php'; </script>";
+				echo "<script> document.location='../dashboard/dash.php'; </script>";
 			}
 			else{
 				// Sets error variable in session array
 				$_SESSION["error"] = $error;
 				// Returns to index (login screen)
-				echo "<script> document.location='index.php'; </script>";
+				echo "<script> document.location='../index.php'; </script>";
 			}
 	}
 ?>

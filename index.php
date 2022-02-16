@@ -6,7 +6,7 @@
 <main>
 	<div class="container">
         <img src="./images/logo.png" alt="logo" width="75%" style="display: block; margin: auto">
-		<form action = "checkLogin.php" method = "post">
+		<form action = "login/checkLogin.php" method = "post">
 			<div class="form-group">
 				<label for="email">Email:</label>
 				<input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
