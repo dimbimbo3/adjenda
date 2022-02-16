@@ -1,0 +1,10 @@
+Customer:
+test@gmail.com password
+thisisatest@gmail.com test123
+
+Employees:
+mmackey@gmail.com mathguru
+jwickens@gmail.com ezpass
+
+CEO:
+fdecker@gmail.com bossman

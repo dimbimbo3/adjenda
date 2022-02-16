@@ -1,0 +1,24 @@
+#user:valid	{
+	background-color: #E8F0FE
+}
+header {
+	border-bottom: 2px solid;
+	padding-bottom: 1em;
+}
+footer {
+	border-top: 2px solid;
+	padding: 1em 1em;
+	text-align: right;
+}
+body {
+	background-color:wheat;
+}
+th {
+	padding: 10px 10px;
+}
+td {
+	padding: 10px 10px;
+}
+.picture{
+	padding-right: 0px;
+}
