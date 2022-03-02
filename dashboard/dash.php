@@ -7,7 +7,7 @@ $action = filter_input(INPUT_POST, 'action');
 //when no action was chosen
 if ($action == NULL) 
 {
-	//sets action to showOptions
+	//sets action to showDash
     $action = 'showDash';
 }
 
