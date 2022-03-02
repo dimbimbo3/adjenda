@@ -1,4 +1,8 @@
 <main>
+
+<!--Includes the defined header-->
+<?php include '../view/dashHeader.php'; ?>
+
 <div class="container">
     <h1>Successful login</h1>
     <h3>Account Email: <?php echo $_SESSION["accEmail"]?></h3>
@@ -17,4 +21,8 @@
          ?>
     </h3>
 </div>
+<a href="courseLanding.php">Placeholder Class Link</a>
 </main>
+
+<!--Includes the defined footer-->
+<?php include '../view/dashFooter.php'; ?>
