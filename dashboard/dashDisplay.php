@@ -2,7 +2,18 @@
 <?php include '../view/header.php'; ?>
 
 <main>
-    <div class="container">
+    <!-- Heading -->
+	<div style="width:94.5%; margin-left:2.5%">
+		<h1>Courses</h1>
+		<hr border-top: 10px solid black; border-radius: 5px;>
+
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">Course Num: 001</div>
+            <div class="card-body text-dark">
+                <h5 class="card-title" style="padding-bottom:10%">Example Course</h5>
+                <a href="../course/course.php" class="btn btn-primary">Select</a>
+            </div>
+        </div>
         <h1>Successful login</h1>
         <h3>Account Email: <?php echo $_SESSION["accEmail"]?></h3>
         <h3>Account Type: 
@@ -19,8 +30,7 @@
                 }
             ?>
         </h3>
-    </div>
-    <a href="../course/course.php">Placeholder Class Link</a>
+	</div>
 </main>
 
 <!--Includes the defined footer-->
