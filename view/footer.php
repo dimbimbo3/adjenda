@@ -5,6 +5,5 @@
 			</a>
 		</nav>
     </footer>
-</body>
 </html>
 <!-- display: flex; align-items: flex-end; -->
