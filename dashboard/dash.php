@@ -15,6 +15,7 @@ if ($action == NULL)
 switch($action){
 	//displays the dashboard
     case 'showDash':
+        //$courses = getCoursesByEmail($_SESSION["accEmail"])
         include('dashDisplay.php');
         break;
     //user selects course
