@@ -3,7 +3,14 @@
 
 <!-- the head section -->
 <head>
-	<title>Courses</title>
+	<?php
+        if($_SESSION["accType"] == "S"){
+            echo "<title>Student</title>";
+        }
+    	else if($_SESSION["accType"] == "I"){
+            echo "<title>Instructor</title>";
+        }
+    ?>
 	<meta charset = "utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<!-- Bootstrap CSS -->
