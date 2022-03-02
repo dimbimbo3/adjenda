@@ -1,7 +1,7 @@
 <main>
 
 <!--Includes the defined header-->
-<?php include '../view/dashHeader.php'; ?>
+<?php include '../view/header.php'; ?>
 
 <div class="container">
     <h1>Successful login</h1>
@@ -21,8 +21,8 @@
          ?>
     </h3>
 </div>
-<a href="courseLanding.php">Placeholder Class Link</a>
+<a href="../courses/courses.php">Placeholder Class Link</a>
 </main>
 
 <!--Includes the defined footer-->
-<?php include '../view/dashFooter.php'; ?>
+<?php include '../view/footer.php'; ?>
