@@ -17,5 +17,11 @@ switch($action){
     case 'showDash':
         include('dashDisplay.php');
         break;
+    //user selects course
+    case 'selectCourse':
+        //retrieves the selected courseID and stores it as a session variable
+        //$_SESSION["courseID"] = filter_input(INPUT_POST, 'courseNum');
+        echo "<script> document.location='../course/course.php'; </script>";
+        break;
 }
 ?>

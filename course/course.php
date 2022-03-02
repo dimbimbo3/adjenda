@@ -15,6 +15,9 @@ if ($action == NULL)
 switch($action){
 	//displays the course
     case 'showCourse':
+        //$course = getCourseByID() using session courseNum
+        //$roster = getClassRoster() using session courseNum
+        //$lesson = getLesson() using session courseNum
         include('courseDisplay.php');
         break;
 }
