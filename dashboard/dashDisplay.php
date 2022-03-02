@@ -20,7 +20,7 @@
             ?>
         </h3>
     </div>
-    <a href="../courses/courses.php">Placeholder Class Link</a>
+    <a href="../course/course.php">Placeholder Class Link</a>
 </main>
 
 <!--Includes the defined footer-->

@@ -7,15 +7,15 @@ $action = filter_input(INPUT_POST, 'action');
 //when no action was chosen
 if ($action == NULL) 
 {
-	//sets action to showOptions
-    $action = 'showCourses';
+	//sets action to showCourse
+    $action = 'showCourse';
 }
 
 //selects chosen action
 switch($action){
 	//displays the course
-    case 'showCourses':
-        include('coursesDisplay.php');
+    case 'showCourse':
+        include('courseDisplay.php');
         break;
 }
 ?>
