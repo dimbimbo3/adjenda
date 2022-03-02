@@ -4,8 +4,8 @@
 <main>
 	<!-- Course Header -->
 	<div style="width:94.5%; margin-left:2.5%">
-	<h1>Course Landing Placeholder</h1>
-	<hr border-top: 10px solid black; border-radius: 5px;>
+		<h1>Course Landing Placeholder</h1>
+		<hr border-top: 10px solid black; border-radius: 5px;>
 	</div>
 
 	<!-- Course Information -->
