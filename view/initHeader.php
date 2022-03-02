@@ -17,7 +17,7 @@
 </head>
 
 <!-- the body section -->
-<body>
+<body style="background-color: #58AAFF">
 	<header>
 		<!--Navbar START-->
 		<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #0079C2;">
