@@ -4,7 +4,7 @@
 <?php include '../view/initHeader.php'; ?>
 
 <main>
-	<div class="container">
+	<div style="background-color: white; padding: 1em 1em; width: 25%; border-radius: 0.5em; margin: auto">
 		<img src="../images/logo.png" alt="logo" width="75%" style="display: block; margin: auto">
 		<form action = "commit.php" method = "post">
 			<div class="form-group">
