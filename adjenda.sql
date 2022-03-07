@@ -5,8 +5,8 @@ use adjendaDatabase;
 
 create table STUDENTS(
     email varchar(255) NOT NULL,
-    fname varchar(255) NOT NULL,
-    lname varchar(255) NOT NULL,
+    fName varchar(255) NOT NULL,
+    lName varchar(255) NOT NULL,
     pass varchar(255) NOT NULL,
     verified tinyint(1) DEFAULT 0,
     PRIMARY KEY(email)
@@ -14,8 +14,8 @@ create table STUDENTS(
 
 create table INSTRUCTORS(
     email varchar(255) NOT NULL,
-    fname varchar(255) NOT NULL,
-    lname varchar(255) NOT NULL,
+    fName varchar(255) NOT NULL,
+    lName varchar(255) NOT NULL,
     pass varchar(255) NOT NULL,
     PRIMARY KEY(email)
 );
