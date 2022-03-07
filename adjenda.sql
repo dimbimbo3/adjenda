@@ -8,7 +8,7 @@ create table STUDENTS(
     fName varchar(255) NOT NULL,
     lName varchar(255) NOT NULL,
     pass varchar(255) NOT NULL,
-    verified tinyint(1) DEFAULT 0,
+    verified tinyint(1) DEFAULT 0 NOT NULL,
     PRIMARY KEY(email)
 );
 
@@ -36,7 +36,7 @@ create table ROSTERS(
     stuEmail varchar(255) NOT NULL,
     fName varchar(255) NOT NULL,
     lName varchar(255) NOT NULL,
-    enrolled tinyint(1) DEFAULT 0,
+    enrolled tinyint(1) DEFAULT 0 NOT NULL,
     CONSTRAINT rPK PRIMARY KEY(courseID, stuEmail),
     FOREIGN KEY(courseID) REFERENCES COURSES(id),
     FOREIGN KEY(stuEmail) REFERENCES STUDENTS(email)
@@ -59,7 +59,7 @@ create table ATTENDANCES(
     lessonDate date NOT NULL,
     INDEX(lessonDATE), --testing for foreign key requirements
     attended tinyint(1) DEFAULT 0,
-    CONSTRAINT lPK PRIMARY KEY(courseID, stuEmail, lessonDate),
+    CONSTRAINT aPK PRIMARY KEY(courseID, stuEmail, lessonDate),
     FOREIGN KEY(courseID) REFERENCES COURSES(id),
     FOREIGN KEY(stuEmail) REFERENCES STUDENTS(email),
     FOREIGN KEY(lessonDate) REFERENCES LESSONS(lDate)
