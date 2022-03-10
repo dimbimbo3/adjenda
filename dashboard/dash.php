@@ -85,9 +85,6 @@ switch($action){
         $startTime = "".$startHours.":".$startMinutes.":00";
         $endTime = "".$endHours.":".$endMinutes.":00";
 
-        echo '<script>alert("Start = '.$startTime.'")</script>';
-        echo '<script>alert("End = '.$endTime.'")</script>';
-
         //adds the created course to the database
         //addCourse($courseName, $_SESSION["accEmail"], $day1, $day2, $startTime, $endTime);
 
