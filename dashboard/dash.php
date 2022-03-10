@@ -46,7 +46,7 @@ switch($action){
         $startHours = filter_input(INPUT_POST, 'startHours');
         $startMinutes = filter_input(INPUT_POST, 'startMinutes');
         $duration = filter_input(INPUT_POST, 'duration');
-        //$selectStudents = $_POST['selectedDays']; //Array of checked students
+        //$selectedStudents = $_POST['selectedDays']; //Array of checked students
 
         //creates a string containing the selected days seperated by slashes
         for($i = 0; $i < count($selectedDays); $i++){
@@ -73,7 +73,7 @@ switch($action){
         $hours = $startHours + $durationHours;
         $minutes = $startMinutes + $durationMinutes;
         //if the end minutes equals 60 or more then adds an hour to the end time and leaves the difference as the minutes
-        if($endMinutes >= 60){
+        if($minutes >= 60){
             $hours += 1;
             $minutes -= 60;
         }
@@ -85,8 +85,13 @@ switch($action){
         $startTime = "".$startHours.":".$startMinutes.":00";
         $endTime = "".$endHours.":".$endMinutes.":00";
 
-        //adds the created course to the database
-        //addCourse($courseName, $_SESSION["accEmail"], $day1, $day2, $startTime, $endTime);
+        //adds the created course to the database 
+        //*create an if statement that prevents the course's creation if the day and time overlaps with a course from the given instructor!!!*
+        //(get all courses' start and end times that coincide with the instructor's email and check if the start time of the new course is within that range)
+        addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
+
+        //*need to add the initially selected students to the class roster table under the course's ID, therefore need to retrieve the newly created course's ID by the course's name*
+        //*need to create the lessons that correspond with the selected days for the given semester*
 
         //reloads the dashboard with the newly created course shown
         echo "<script> document.location='dash.php'; </script>";
