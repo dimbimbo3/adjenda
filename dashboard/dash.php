@@ -70,17 +70,23 @@ switch($action){
         }
 
         //calculates the end hours and minutes by adding the duration to the start time
-        $endHours = $startHours + $durationHours;
-        $endMinutes = $startMinutes + $durationMinutes;
+        $hours = $startHours + $durationHours;
+        $minutes = $startMinutes + $durationMinutes;
         //if the end minutes equals 60 or more then adds an hour to the end time and leaves the difference as the minutes
         if($endMinutes >= 60){
-            $endHours += 1;
-            $endMinutes -= 60;
+            $hours += 1;
+            $minutes -= 60;
         }
+        //adds a leading zero to the hours or minutes if they are only one digit
+        $endHours = str_pad(strval($hours), 2, "0", STR_PAD_LEFT);
+        $endMinutes = str_pad(strval($minutes), 2, "0", STR_PAD_LEFT);
 
         //create the start and end times from the start hours and minutes as well as the end hours and minutes
         $startTime = "".$startHours.":".$startMinutes.":00";
         $endTime = "".$endHours.":".$endMinutes.":00";
+
+        echo '<script>alert("Start = '.$startTime.'")</script>';
+        echo '<script>alert("End = '.$endTime.'")</script>';
 
         //adds the created course to the database
         //addCourse($courseName, $_SESSION["accEmail"], $day1, $day2, $startTime, $endTime);
