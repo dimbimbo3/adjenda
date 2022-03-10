@@ -42,12 +42,9 @@ switch($action){
     //Instructor creates a new course
     case 'createCourse':
         $courseName = filter_input(INPUT_POST, 'courseName');
-        $selectedDays = $_POST['selectedDays']; //Array of checked days
-        $startHours = filter_input(INPUT_POST, 'startHours');
-        $startMinutes = filter_input(INPUT_POST, 'startMinutes');
-        $duration = filter_input(INPUT_POST, 'duration');
-        //$selectedStudents = $_POST['selectedDays']; //Array of checked students
 
+        //Days
+        $selectedDays = $_POST['selectedDays']; //Array of checked days
         //creates a string containing the selected days seperated by slashes
         for($i = 0; $i < count($selectedDays); $i++){
             $days .= $selectedDays[$i]."/";
@@ -55,6 +52,10 @@ switch($action){
         //remove the last slash from the days string
         $days = rtrim($days, "/");
 
+        //Time
+        $startHours = filter_input(INPUT_POST, 'startHours'); //selected start hours
+        $startMinutes = filter_input(INPUT_POST, 'startMinutes'); //selected start minutes
+        $duration = filter_input(INPUT_POST, 'duration'); //selected duration
         //determines the duration hours and minutes based on the selected duration
         if($duration == 1){
             $durationHours = 1;
@@ -87,11 +88,33 @@ switch($action){
 
         //adds the created course to the database 
         //*create an if statement that prevents the course's creation if the day and time overlaps with a course from the given instructor!!!*
-        //(get all courses' start and end times that coincide with the instructor's email and check if the start time of the new course is within that range)
+        //*(get all courses' start and end times that coincide with the instructor's email and check if the start time of the new course is within that range)*
         addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
 
+        //Students
+        //$selectedStudents = $_POST['selectedDays']; //Array of checked students
         //*need to add the initially selected students to the class roster table under the course's ID, therefore need to retrieve the newly created course's ID by the course's name*
-        //*need to create the lessons that correspond with the selected days for the given semester*
+
+        //Lessons
+        //*need to create the lessons records that correspond with the selected days for the selected semesterSTART to semesterEND*
+        $semester = filter_input(INPUT_POST, 'semester');
+        //determines the semester start and end based on the selected semester
+        if($semester == "FALL"){
+            $semesterSTART = "September";
+            $semesterEND = "December";
+        }
+        elseif($semester == "SPRING"){
+            $semesterSTART = "January";
+            $semesterEND = "May";
+        }
+        elseif($semester == "WINTER"){
+            $semesterSTART = "December";
+            $semesterEND = "January";
+        }
+        elseif($semester == "SUMMER"){
+            $semesterSTART = "June";
+            $semesterEND = "August";
+        }
 
         //reloads the dashboard with the newly created course shown
         echo "<script> document.location='dash.php'; </script>";

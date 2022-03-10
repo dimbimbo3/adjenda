@@ -103,6 +103,17 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label for="semester" class="col-sm-4 col-form-label">Semester:</label>
+                                                        <div class="col-sm">
+                                                            <select class="form-control" name="semester" required>
+                                                                <option value="FALL">FALL (Sep to Dec)</option>
+                                                                <option value="SPRING">SPRING (Jan to May)</option>
+                                                                <option value="WINTER">WINTER (Dec to Jan)</option>
+                                                                <option value="SUMMER">SUMMER (June to Aug)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button class="btn btn-primary" data-dismiss="modal">Exit</button>
