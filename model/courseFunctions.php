@@ -26,4 +26,21 @@ function getCourseByID($courseID){
     $statement->closeCursor();
     return $course;
 }
+
+//Adds a new course to the database
+function addCourse($name, $instrEmail, $days, $sTime, $eTime){
+    global $db;
+    $query = 'INSERT INTO COURSES
+                 (name, instrEmail, days, sTime, eTime)
+              VALUES
+                (:name, :instrEmail, :days, :sTime, :eTime)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':name', $name);
+    $statement->bindValue(':instrEmail', $instrEmail);
+    $statement->bindValue(':days', $days);
+    $statement->bindValue(':sTime', $sTime);
+    $statement->bindValue(':eTime', $eTime);
+    $statement->execute();
+    $statement->closeCursor();
+}
 ?>
