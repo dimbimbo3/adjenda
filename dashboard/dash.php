@@ -36,7 +36,7 @@ switch($action){
     //user selects course
     case 'selectCourse':
         //retrieves the selected courseID and stores it as a session variable
-        $_SESSION["courseID"] = filter_input(INPUT_POST, 'courseNum');
+        $_SESSION["courseID"] = filter_input(INPUT_POST, 'courseID');
         echo "<script> document.location='../course/course.php'; </script>";
         break;
 }
