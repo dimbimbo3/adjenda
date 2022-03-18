@@ -42,7 +42,7 @@
 			<div class="collapse navbar-collapse" id="collapsingNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" style="color: white; padding-left: 5%" href=http://localhost/adjenda/dashboard/dash.php>
+						<a class="nav-link" style="color: white; padding-left: 5%" href=http://localhost/adjenda-main/dashboard/dash.php>
 							dashboard
 						</a>
 					</li>
@@ -52,7 +52,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" style="color: white; padding-left: 5%; font-weight:bold" href=http://localhost/adjenda/login/login.php>
+						<a class="nav-link" style="color: white; padding-left: 5%; font-weight:bold" href=http://localhost/adjenda-main/login/login.php>
 							LOGOUT
 						</a>
 					</li>

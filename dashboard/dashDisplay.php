@@ -10,7 +10,7 @@
         <!--Course Card Counter-->
         <?php $counter = 0 ?>
         <!--Table formatting for each course-->
-        <table style="border-collapse: separate; border-spacing: 20px;">
+        <table style="border-collapse: separate; border-spacing: 14px;">
                 <!--checks if the user is an instructor, if so displays course creation card-->
                 <?php if($_SESSION["accType"] == "I") : ?>
                     <td>
@@ -173,7 +173,7 @@
                         <?php $counter+=1; //increments course card counter ?>
                         <!--Checks if a new row needs to be created for spacing (creates a new row every 5 cards)-->
                         <?php 
-                            if($counter == 5){
+                            if($counter == 4){
                                 echo "<tr></tr>";
                                 $counter = 0; //resets course card counter
                             }

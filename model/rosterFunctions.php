@@ -41,4 +41,16 @@ function getRosterEnrollment($courseID, $stuEmail){
     $status = $enrollment['enrollment'];
     return $status;
 }
+
+//generate attendance code
+$attendcode = '';
+function getRandomString($attendcode) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';   
+
+    for ($i = 0; $i < 6; $i++) {
+        $attendcode .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+
+    return $attendcode;
+}
 ?>
