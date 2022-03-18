@@ -20,6 +20,7 @@
 			<div class="form-group">
 				<label for="email">Email:</label>
 				<input type="email" class="form-control" id="email" name="email" placeholder="Enter email" pattern=".+edu" required>
+				<small id="passwordHelp" class="form-text form-muted">Email must end in .edu</small>
 			</div>
 			<div class="form-group">
 				<label for="fname">First Name:</label>
@@ -31,7 +32,10 @@
 			</div>
 			<div class="form-group">
 				<label for="pass">Password:</label>
-				<input type="password" class = "form-control" id="pass" name="pass" placeholder="Enter password" required>
+				<input type="password" class ="form-control" id="pass" name="pass" placeholder="Enter password" pattern="(?=.* 
+     				[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{8,}" required>
+				<small id="passwordHelp" class="form-text form-muted">Requires length of at least 8 characters </br> 
+					(at least one lowercase letter, one uppercase letter, one number, one special character</small>
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary" style="display: block; margin: auto;">Submit</button>
