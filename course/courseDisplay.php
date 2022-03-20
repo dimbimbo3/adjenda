@@ -86,16 +86,60 @@
 
 		<?php if($_SESSION["accType"] == "I") : ?>
 			<div class="form-group" style="float: right; width: 300px">
-				<form action="course.php" method="post" style="padding-top:2%">
-					<ul style="list-style: none;">
+				<ul style="list-style: none;">
+					<form action="course.php" method="post" style="padding-top:2%">
 						<li style="padding-top:4%">
-							<button type="button" class="btn btn-primary" style="width: 182px">Take Attendance</button>
+							<form action = "course.php" method = "post">
+								<div class="form-group">
+									<input type="hidden" name="action" value="takeAttendance">
+									<button type="submit" class="btn btn-primary" style="width: 182px">Take Attendance</button>
+								</div>
 						</li>
-						<li style="padding-top:4%">
-							<button type="button" class="btn btn-primary">View Attendance Logs</button>
-						</li>
-					</ul>
-				</form>
+					</form>
+					<li style="padding-top:4%">
+						<div class="modal fade" id="viewModal">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1>View Attendance Logs</h1>
+                                    </div>
+                                    <div class="modal-body">
+										<!--Drop down menu and list-->
+										<form action="course.php" method="post">
+											<div class="form-group row justify-content-center">
+												<input type="hidden" name="action" value="downloadLog">
+												<button type="submit" class="btn btn-primary" name="download" id="download" disabled="true" style="width: 25%">Download Log</button>
+											</div>
+											<div class="form-group row">
+												<div class="col-sm-10" style="margin:auto">
+													<select class = "form-control" name ="date" required>
+														<option value="" selected hidden>Select a Date</option>
+														<?php foreach($dates as $date) : ?>
+															<option value="<?php echo $date['lessonDate'] ?>"><?php echo $date['lessonDate'] ?></option>
+														<?php endforeach; ?>
+													</select>
+												</div>
+											</div>
+										</form>
+										<!--Form Scripting-->
+										<script type="text/javascript">
+                                        	$(function(){
+												if(document.getElementById("date").value != "")
+													document.getElementById("download").disabled=false;
+												else
+													document.getElementById("download").disabled=true;
+											});
+                                    	</script>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" data-dismiss="modal">Exit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<button class="btn btn-primary" href="#" data-toggle="modal" data-target="#viewModal">View Attendance Logs</button>
+					</li>
+				</ul>
 			</div>
 		<?php endif; ?>
 	</div>
