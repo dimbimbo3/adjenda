@@ -42,9 +42,9 @@ function getRosterEnrollment($courseID, $stuEmail){
     return $status;
 }
 
-//generate attendance code
-$attendcode = '';
-function getRandomString($attendcode) {
+//Generates the instructor's random attendance code for a given class lesson
+function getAttendanceCode() {
+    $attendcode = '';
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';   
 
     for ($i = 0; $i < 6; $i++) {
