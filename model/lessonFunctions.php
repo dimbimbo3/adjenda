@@ -12,13 +12,11 @@ function checkLessonDate($courseID, $currentDate) {
     $lessons = $statement->fetchAll();
     $statement->closeCursor();
 
+    $result = false;
     foreach($lessons as $lesson){
         if($currentDate == $lesson['ldate']){
             $result = true;
             break; //breaks out of the loop if found
-        }
-        else{
-            $result = false;
         }
     }
 
