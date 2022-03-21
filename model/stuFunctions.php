@@ -33,7 +33,7 @@ function checkStuEmail($email){
 // Generates verification code for new student account
 function generateVerificationCode(){
     $bytes = random_bytes(5);
-    $vCode = var_dump(bin2hex($bytes));
+    $vCode = bin2hex($bytes);
 
     return $vCode;
 }
