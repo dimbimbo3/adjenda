@@ -30,19 +30,30 @@ function checkStuEmail($email){
 	return $found;
 }
 
+// Generates verification code for new student account
+function generateVerificationCode(){
+    $bytes = random_bytes(5);
+    $vCode = var_dump(bin2hex($bytes));
+
+    return $vCode;
+}
+
 // Inserts a new student into the database
-function addStudent($email,$fname,$lname,$hashedPass){
-    global $db;
+function addStudent($email,$fName,$lName,$hashedPass){
+    $vCode = generateVerificationCode();
     $verified = 0;
+
+    global $db;
     $query = 'INSERT INTO STUDENTS
-                 (email, fname, lname, pass, verified)
+                 (email, fName, lName, pass, vCode, verified)
               VALUES
-                (:email, :fname, :lname, :hashedPass, :verified)';
+                (:email, :fName, :lName, :hashedPass, :vCode, :verified)';
     $statement = $db->prepare($query);
     $statement->bindValue(':email', $email);
-    $statement->bindValue(':fname', $fname);
-    $statement->bindValue(':lname', $lname);
+    $statement->bindValue(':fName', $fName);
+    $statement->bindValue(':lName', $lName);
     $statement->bindValue(':hashedPass', $hashedPass);
+    $statement->bindValue(':vCode', $vCode);
     $statement->bindValue(':verified', $verified);
     $statement->execute();
     $statement->closeCursor();
