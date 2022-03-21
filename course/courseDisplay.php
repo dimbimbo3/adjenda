@@ -97,7 +97,15 @@
 							<form action = "course.php" method = "post">
 								<div class="form-group">
 									<input type="hidden" name="action" value="takeAttendance">
-									<button type="submit" class="btn btn-primary" style="width: 182px">Take Attendance</button>
+									<!--Only enables the 'Take Attendance' button if there is at least one student in the roster-->
+									<?php
+										if($numofstudents != 0){
+											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\">Take Attendance</button>";
+										}
+										else{
+											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\" disabled=\"true\">Take Attendance</button>";
+										}
+                                	?>
 								</div>
 						</li>
 					</form>
@@ -113,11 +121,11 @@
 										<form action="course.php" method="post">
 											<div class="form-group row justify-content-center">
 												<input type="hidden" name="action" value="downloadLog">
-												<button type="submit" class="btn btn-primary" name="download" id="download" disabled="true" style="width: 25%">Download Log</button>
+												<button type="submit" class="btn btn-primary" style="width: 25%" id="download" disabled="true">Download Log</button>
 											</div>
 											<div class="form-group row">
 												<div class="col-sm-10" style="margin:auto">
-													<select class = "form-control" name ="date" required>
+													<select class ="form-control" name ="date" required>
 														<option value="" selected hidden>Select a Date</option>
 														<?php foreach($dates as $date) : ?>
 															<option value="<?php echo $date['lessonDate'] ?>"><?php echo $date['lessonDate'] ?></option>
@@ -125,16 +133,21 @@
 													</select>
 												</div>
 											</div>
+											<script type='text/javascript'>
+												//Disables the 'Download Log' button until a date has been selected
+												$('select').change(function() {
+													var selectedDate = $(this).val();
+													switch(selectedDate){
+														case '':
+															$('#download').prop('disabled',true);
+															break;
+														default:
+															$('#download').prop('disabled',false);
+															break;
+													}
+												});
+											</script>
 										</form>
-										<!--Form Scripting-->
-										<script type="text/javascript">
-                                        	$(function(){
-												if(document.getElementById("date").value != "")
-													document.getElementById("download").disabled=false;
-												else
-													document.getElementById("download").disabled=true;
-											});
-                                    	</script>
                                     </div>
                                     <div class="modal-footer">
                                         <button class="btn btn-primary" data-dismiss="modal">Exit</button>
