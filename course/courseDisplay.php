@@ -34,7 +34,7 @@
 	</div>
 
 	<!-- Course Information -->
-	<div style="width:94.5%; height:600px; margin-left:2.5%; background-color: #C8d1d4; border-radius: 0.5em;">
+	<div style="width:94.5%; height:600px; margin-left:2.5%; background-color: #EBEBEC; border-radius: 0.5em;">
 		<header>
 			<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #0079C2; border-radius: 0.5em; height: 8%;">
 				<ul class="navbar-nav" style="margin-left:2%">
