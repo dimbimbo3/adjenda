@@ -45,6 +45,11 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" style="color: white;" href="#">
+							Groups
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" style="color: white;" href="#">
 							Polls
 						</a>
 					</li>
