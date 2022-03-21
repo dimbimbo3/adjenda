@@ -47,7 +47,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" style="color: white; padding-left: 5%">
+						<a class="nav-link" style="color: white; padding-left: 5%" href="#">
 							settings
 						</a>
 					</li>
