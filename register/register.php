@@ -23,12 +23,12 @@
 				<small id="passwordHelp" class="form-text text-muted">Email must end in .edu</small>
 			</div>
 			<div class="form-group">
-				<label for="fname">First Name:</label>
-				<input type="text" class="form-control" id="fname" name="fname" placeholder="Enter first name" pattern="[A-Za-z]+" required>
+				<label for="fName">First Name:</label>
+				<input type="text" class="form-control" id="fName" name="fName" placeholder="Enter first name" pattern="[A-Za-z]+" required>
 			</div>
 			<div class="form-group">
-				<label for="lname">Last Name:</label>
-				<input type="text" class="form-control" id="lname" name="lname" placeholder="Enter last name" pattern="[A-Za-z]+" required>
+				<label for="lName">Last Name:</label>
+				<input type="text" class="form-control" id="lName" name="lName" placeholder="Enter last name" pattern="[A-Za-z]+" required>
 			</div>
 			<div class="form-group">
 				<label for="pass">Password:</label>

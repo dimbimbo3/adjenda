@@ -11,13 +11,13 @@ require_once('../model/stuFunctions.php');
 // Gets the entered form data
 	$email = $_POST['email'];
 	$pass = $_POST['pass'];
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
+	$fName = $_POST['fName'];
+	$lName = $_POST['lName'];
 	
-//checks if email is already being used by a customer
+//checks if email is already being used by a student
 	$stuFound = checkStuEmail($email);
 
-//checks if email is already being used by a employee
+//checks if email is already being used by a instructor
 	if($stuFound == false){
 		$instrFound = checkinstrEmail($email);
 	}
@@ -35,7 +35,7 @@ require_once('../model/stuFunctions.php');
 		// Encrypts the entered password
 		$hashedPass = password_hash($pass, PASSWORD_DEFAULT);
 		// Adds customer to the database
-		addStudent($email,$fname,$lname,$hashedPass);
+		addStudent($email,$fName,$lName,$hashedPass);
 		// Returns to index (login screen)
 		echo "<script> window.location='../login/login.php'; </script>";
 	}
