@@ -151,35 +151,43 @@
                     </td>
                     <?php $counter+=1; //increments course card counter ?>
                 <?php endif;?>
-                <!--Goes through each retrieved course and displays them as cards, allowing for the user to navigate to one-->
-                <?php foreach ($courses as $course): ?>
-                    <!--Checks if the user is an instructor-->
-                    <!--if not then checks if the student has accepted enrollment into each course and displays those that have-->
-                    <?php if($_SESSION["accType"] == "I" || getRosterEnrollment($course['id'],$_SESSION['accEmail']) == 1) : ?>
-                        <!--Course Cards-->
-                        <td>
-                            <div class="card bg-light mb-3" style="height: 12rem; width: 18rem;">
-                                <div class="card-header">Course ID: <?php echo $course['id'] ?></div>
-                                <div class="card-body text-dark">
-                                    <h5 class="card-title" style="padding-bottom:10%"><?php echo $course['name'] ?></h5>
-                                    <form action="dash.php" method="post">
-                                        <input type="hidden" name="action" value="selectCourse">
-                                        <input type="hidden" name="courseID" value="<?php echo $course['id'] ?>">
-                                        <button type="submit" class="btn btn-primary">Select</button>
-                                    </form>
+                <!--Checks if the account is associated with any courses-->
+                <?php if(!empty($courses)) : ?>
+                    <!--Goes through each retrieved course and displays them as cards, allowing for the user to navigate to one-->
+                    <?php foreach ($courses as $course): ?>
+                        <!--Checks if the user is an instructor-->
+                        <!--if not then checks if the student has accepted enrollment into each course and displays those that have-->
+                        <?php if($_SESSION["accType"] == "I" || getRosterEnrollment($course['id'],$_SESSION['accEmail']) == 1) : ?>
+                            <!--Course Cards-->
+                            <td>
+                                <div class="card bg-light mb-3" style="height: 12rem; width: 18rem;">
+                                    <div class="card-header">Course ID: <?php echo $course['id'] ?></div>
+                                    <div class="card-body text-dark">
+                                        <h5 class="card-title" style="padding-bottom:10%"><?php echo $course['name'] ?></h5>
+                                        <form action="dash.php" method="post">
+                                            <input type="hidden" name="action" value="selectCourse">
+                                            <input type="hidden" name="courseID" value="<?php echo $course['id'] ?>">
+                                            <button type="submit" class="btn btn-primary">Select</button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <?php $counter+=1; //increments course card counter ?>
-                        <!--Checks if a new row needs to be created for spacing (creates a new row every 5 cards)-->
-                        <?php 
-                            if($counter == 4){
-                                echo "<tr></tr>";
-                                $counter = 0; //resets course card counter
-                            }
-                        ?>
-                    <?php endif; ?>
-                <?php endforeach;?>
+                            </td>
+                            <?php $counter+=1; //increments course card counter ?>
+                            <!--Checks if a new row needs to be created for spacing (creates a new row every 5 cards)-->
+                            <?php 
+                                if($counter == 4){
+                                    echo "<tr></tr>";
+                                    $counter = 0; //resets course card counter
+                                }
+                            ?>
+                        <?php endif; ?>
+                    <?php endforeach;?>
+                <!--Else there are no courses-->
+                <?php else : ?>
+                    <td>
+                        <!--empty data cell-->
+                    </td>
+                <?php endif; ?>
         </table>
 	</div>
 </main>
