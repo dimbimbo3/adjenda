@@ -156,7 +156,7 @@
                     <!--Goes through each retrieved course and displays them as cards, allowing for the user to navigate to one-->
                     <?php foreach ($courses as $course): ?>
                         <!--Checks if the user is an instructor-->
-                        <!--if not then checks if the student has accepted enrollment into each course and displays those that have-->
+                        <!--if not then checks if the student has accepted enrollment into each course and displays those that they have-->
                         <?php if($_SESSION["accType"] == "I" || getRosterEnrollment($course['id'],$_SESSION['accEmail']) == 1) : ?>
                             <!--Course Cards-->
                             <td>
@@ -173,7 +173,7 @@
                                 </div>
                             </td>
                             <?php $counter+=1; //increments course card counter ?>
-                            <!--Checks if a new row needs to be created for spacing (creates a new row every 5 cards)-->
+                            <!--Checks if a new row needs to be created for spacing (creates a new row every 4 cards)-->
                             <?php 
                                 if($counter == 4){
                                     echo "<tr></tr>";
