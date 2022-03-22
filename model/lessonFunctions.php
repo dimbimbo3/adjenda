@@ -22,4 +22,16 @@ function checkLessonDate($courseID, $currentDate) {
 
     return $result;
 }
+
+//Generates the instructor's random attendance code for a given class lesson
+function getAttendanceCode() {
+    $attendcode = '';
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';   
+
+    for ($i = 0; $i < 6; $i++) {
+        $attendcode .= $characters[mt_rand(0, strlen($characters) - 1)];
+    }
+
+    return $attendcode;
+}
 ?>
