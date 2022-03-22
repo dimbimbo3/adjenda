@@ -42,18 +42,6 @@ function getRosterEnrollment($courseID, $stuEmail){
     return $status;
 }
 
-//Generates the instructor's random attendance code for a given class lesson
-function getAttendanceCode() {
-    $attendcode = '';
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';   
-
-    for ($i = 0; $i < 6; $i++) {
-        $attendcode .= $characters[mt_rand(0, strlen($characters) - 1)];
-    }
-
-    return $attendcode;
-}
-
 // Generates cryptographically secure enrollment code for new student in roster
 function generateEnrollmentCode(){
     $bytes = random_bytes(5);
