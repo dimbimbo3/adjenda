@@ -54,7 +54,7 @@ function getAttendanceCode() {
     return $attendcode;
 }
 
-// Generates enrollment code for new student in roster
+// Generates cryptographically secure enrollment code for new student in roster
 function generateEnrollmentCode(){
     $bytes = random_bytes(5);
     $eCode = bin2hex($bytes);

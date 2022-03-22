@@ -30,7 +30,7 @@ function checkStuEmail($email){
 	return $found;
 }
 
-// Generates verification code for new student account
+// Generates cryptographically secure verification code for new student account
 function generateVerificationCode(){
     $bytes = random_bytes(5);
     $vCode = bin2hex($bytes);
