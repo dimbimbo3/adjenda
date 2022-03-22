@@ -103,7 +103,7 @@
 											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\">Take Attendance</button>";
 										}
 										else{
-											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\" disabled=\"true\">Take Attendance</button>";
+											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\" disabled=\"true\">No Students</button>";
 										}
                                 	?>
 								</div>
