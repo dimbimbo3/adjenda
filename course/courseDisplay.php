@@ -54,6 +54,20 @@
 						</a>
 					</li>
 				</ul>
+				<ul class="navbar-nav" style="margin-left:63%">
+					<li class="nav-item">
+						<a class="nav-link" style="color: white;">
+							<?php if($_SESSION["accType"] == "I") : ?>
+								<?php
+									if(isset($_SESSION['attendanceCode'])){
+										$code = $_SESSION['attendanceCode'];
+										echo "Attendance Code : ".$code;
+									}
+								?> 
+							<?php endif; ?>
+						</a>
+					</li>
+				</ul>
 			</nav>
 		</header>
 
@@ -99,8 +113,11 @@
 									<input type="hidden" name="action" value="takeAttendance">
 									<!--Only enables the 'Take Attendance' button if there is at least one student in the roster-->
 									<?php
-										if($numofstudents != 0){
+										if($numofstudents != 0 && !(isset($_SESSION['attendanceCode']))){
 											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\">Take Attendance</button>";
+										}
+										elseif(isset($_SESSION['attendanceCode'])){
+											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\" disabled=\"true\">Code Generated</button>";
 										}
 										else{
 											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\" disabled=\"true\">No Students</button>";
