@@ -11,7 +11,7 @@ worlds of online classroom collaboration and an in person educational experience
 
 Built with
 
--PHP -XAMPP/MySQL -Bootstrap
+-PHP -XAMPP -SQLite -Bootstrap
 
 ------------------------------------------------------------------------
 
