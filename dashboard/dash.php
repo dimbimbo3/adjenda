@@ -3,6 +3,7 @@
 <?php
 require_once('../model/courseFunctions.php');
 require_once('../model/rosterFunctions.php');
+require_once('../model/lessonFunctions.php');
 
 //retrieves the chosen action
 $action = filter_input(INPUT_POST, 'action');
@@ -41,50 +42,22 @@ switch($action){
         break;
     //Instructor creates a new course
     case 'createCourse':
+        //Course Name
         $courseName = filter_input(INPUT_POST, 'courseName');
 
-        //Days
-        $selectedDays = $_POST['selectedDays']; //Array of checked days
-        //creates a string containing the selected days seperated by slashes
-        for($i = 0; $i < count($selectedDays); $i++){
-            $days .= $selectedDays[$i]."/";
-        }
-        //remove the last slash from the days string
-        $days = rtrim($days, "/");
+        //Course Days
+        $selectedDays = $_POST['selectedDays']; //array of checked days
+        $days = seperateDays($selectedDays); //seperates the selected days by slashes
 
-        //Time
+        //Course Time
+        $duration = filter_input(INPUT_POST, 'duration'); //selected duration
         $startHours = filter_input(INPUT_POST, 'startHours'); //selected start hours
         $startMinutes = filter_input(INPUT_POST, 'startMinutes'); //selected start minutes
-        $duration = filter_input(INPUT_POST, 'duration'); //selected duration
-        //determines the duration hours and minutes based on the selected duration
-        if($duration == 1){
-            $durationHours = 1;
-            $durationMinutes = 15;
-        }
-        elseif($duration == 2){
-            $durationHours = 2;
-            $durationMinutes = 30;
-        }
-        elseif($duration == 3){
-            $durationHours = 3;
-            $durationMinutes = 0;
-        }
-
-        //calculates the end hours and minutes by adding the duration to the start time
-        $hours = $startHours + $durationHours;
-        $minutes = $startMinutes + $durationMinutes;
-        //if the end minutes equals 60 or more then adds an hour to the end time and leaves the difference as the minutes
-        if($minutes >= 60){
-            $hours += 1;
-            $minutes -= 60;
-        }
-        //adds a leading zero to the hours or minutes if they are only one digit
-        $endHours = str_pad(strval($hours), 2, "0", STR_PAD_LEFT);
-        $endMinutes = str_pad(strval($minutes), 2, "0", STR_PAD_LEFT);
-
-        //create the start and end times from the start hours and minutes as well as the end hours and minutes
-        $startTime = "".$startHours.":".$startMinutes.":00";
-        $endTime = "".$endHours.":".$endMinutes.":00";
+        $endHrsMins = $calculateEndHrsMins($duration, $startHours, $starMinutes); //calculates endHours & endMinutes (returns array)
+        $endHours = $endHrsMins[0]; //course ending hours
+        $endMinutes = $endHrsMins[1]; //course ending minutes
+        $startTime = "".$startHours.":".$startMinutes.":00"; //created start time from start hours and minutes
+        $endTime = "".$endHours.":".$endMinutes.":00"; //created end time from end hours and minutes
 
         //adds the created course to the database 
         //*create an if statement that prevents the course's creation if the day and time overlaps with a course from the given instructor!!!*
@@ -98,26 +71,88 @@ switch($action){
         //Lessons
         //*need to create the lessons records that correspond with the selected days for the selected semesterSTART to semesterEND*
         $semester = filter_input(INPUT_POST, 'semester');
-        //determines the semester start and end based on the selected semester
-        if($semester == "FALL"){
-            $semesterSTART = "September";
-            $semesterEND = "December";
-        }
-        elseif($semester == "SPRING"){
-            $semesterSTART = "January";
-            $semesterEND = "May";
-        }
-        elseif($semester == "WINTER"){
-            $semesterSTART = "December";
-            $semesterEND = "January";
-        }
-        elseif($semester == "SUMMER"){
-            $semesterSTART = "June";
-            $semesterEND = "August";
-        }
+        $months = getSemesterMonths($semester);
 
         //reloads the dashboard with the newly created course shown
         echo "<script> document.location='dash.php'; </script>";
         break;
+}
+
+///////////////////////////////
+//FUNCTIONS FOR COURSE CREATION
+///////////////////////////////
+
+// Creates a string containing the given selected days seperated by slashes
+function seperateDays($selectedDays){
+    $days = "";
+
+    //seperates each day by a foward slash
+    for($i = 0; $i < count($selectedDays); $i++){
+        $days .= $selectedDays[$i]."/";
+    }
+    //remove the last slash from the days string
+    $days = rtrim($days, "/");
+
+    return $days;
+}
+
+// Calculates the endHours and endMinutes of the course based on the selected duration and start time
+function calculateEndHrsMins($duration, $startHours, $startMinutes){
+    //determines the duration hours and minutes based on the selected duration
+    if($duration == 1){
+        $durationHours = 1;
+        $durationMinutes = 15;
+    }
+    elseif($duration == 2){
+        $durationHours = 2;
+        $durationMinutes = 30;
+    }
+    elseif($duration == 3){
+        $durationHours = 3;
+        $durationMinutes = 0;
+    }
+
+    //calculates the end hours and minutes by adding the duration to the start time
+    $hours = $startHours + $durationHours;
+    $minutes = $startMinutes + $durationMinutes;
+    //if the end minutes equals 60 or more then adds an hour to the end time and leaves the difference as the minutes
+    if($minutes >= 60){
+        $hours += 1;
+        $minutes -= 60;
+    }
+
+    //adds a leading zero to the hours (endTime[0]) or minutes (endTime[1]) if they are only one digit
+    $endHrsMins = array();
+    $endHrsMins[0] = str_pad(strval($hours), 2, "0", STR_PAD_LEFT); //endHours
+    $endHrsMins[1] = str_pad(strval($minutes), 2, "0", STR_PAD_LEFT); //endMinutes
+
+    return $endHrsMins;
+}
+
+// Determines the months of the course based on the given semester
+function getSemesterMonths($semester) {
+    //determines the semester start and end based on the selected semester
+    if($semester == "FALL"){
+        $months = array("September", "October", "November", "December");
+        //$semesterSTART = "September";
+        //$semesterEND = "December";
+    }
+    elseif($semester == "SPRING"){
+        $months = array("January", "February", "March", "April", "May");
+        //$semesterSTART = "January";
+        //$semesterEND = "May";
+    }
+    elseif($semester == "WINTER"){
+        $months = array("December", "January");
+        //$semesterSTART = "December";
+        //$semesterEND = "January";
+    }
+    elseif($semester == "SUMMER"){
+        $months = array("May", "June", "July");
+        //$semesterSTART = "May";
+        //$semesterEND = "July";
+    }
+
+    return $months;
 }
 ?>
