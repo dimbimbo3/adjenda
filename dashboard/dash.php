@@ -64,14 +64,11 @@ switch($action){
         //*(get all courses' start and end times that coincide with the instructor's email and check if the start time of the new course is within that range)*
         addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
 
-        //Students
-        //$selectedStudents = $_POST['selectedDays']; //Array of checked students
-        //*need to add the initially selected students to the class roster table under the course's ID, therefore need to retrieve the newly created course's ID by the course's name*
-
         //Lessons
         //*need to create the lessons records that correspond with the selected days for the selected semesterSTART to semesterEND*
         $semester = filter_input(INPUT_POST, 'semester');
         $months = getSemesterMonths($semester);
+        determineLessonDates($months, $days);
 
         //reloads the dashboard with the newly created course shown
         echo "<script> document.location='dash.php'; </script>";
@@ -133,26 +130,40 @@ function calculateEndHrsMins($duration, $startHours, $startMinutes){
 function getSemesterMonths($semester) {
     //determines the semester start and end based on the selected semester
     if($semester == "FALL"){
-        $months = array("September", "October", "November", "December");
+        $months = array("09", "10", "11", "12");
         //$semesterSTART = "September";
         //$semesterEND = "December";
     }
     elseif($semester == "SPRING"){
-        $months = array("January", "February", "March", "April", "May");
+        $months = array("01", "02", "03", "04", "05");
         //$semesterSTART = "January";
         //$semesterEND = "May";
     }
     elseif($semester == "WINTER"){
-        $months = array("December", "January");
+        $months = array("12", "01");
         //$semesterSTART = "December";
         //$semesterEND = "January";
     }
     elseif($semester == "SUMMER"){
-        $months = array("May", "June", "July");
+        $months = array("05", "06", "07");
         //$semesterSTART = "May";
         //$semesterEND = "July";
     }
 
     return $months;
+}
+
+function determineLessonDates($months, $courseDays){
+    $daysArray = explode("/", $courseDays); //breaks up the course's days into tokens delimited by /
+    $numOfMonths = sizeof($months); //retrieves the number of months in the semester
+    //loops through each month in the semester's months array
+    for($count = 0; $count < $numOfMonths; $count++){
+        $numOfDays = cal_days_in_month(CAL_GREGORIAN, $months[$count], date("Y")); //retrieves the number of days in each given month
+        //loops through each day in the given month
+        for($days = 1; $days <= $numOfDays; $days++){
+            $julianDay=gregoriantojd($months[$count], $days, date("Y")); //converts gregorian date to a julian day count
+            $weekDay = jddayofweek($julianDay, 1); //retrieves the name of the weekday for the julian day count
+        }
+    }
 }
 ?>
