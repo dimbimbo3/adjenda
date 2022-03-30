@@ -29,7 +29,7 @@
 <main>
 	<!-- Course Header -->
 	<div style="width:94.5%; margin-left:2.5%">
-		<h1>(Course: <?php echo $course['id'].") ".$course['name'] ?></h1>
+		<h1>(Course ID: <?php echo $course['id'].") ".$course['name'] ?></h1>
 		<hr border-top: 10px solid black; border-radius: 5px;>
 	</div>
 
