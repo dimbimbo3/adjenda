@@ -43,4 +43,19 @@ function addCourse($name, $instrEmail, $days, $sTime, $eTime){
     $statement->execute();
     $statement->closeCursor();
 }
+
+//Retrieves the course ID associated with the given instructor email and course name
+function getCourseID($instrEmail, $name){
+    global $db;
+    $query = 'SELECT * FROM COURSES
+                WHERE instrEmail = :instrEmail AND name = :name';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':instrEmail', $instrEmail);
+    $statement->bindValue(':name', $name);
+    $statement->execute();
+    $course = $statement->fetch();
+    $statement->closeCursor();
+    $courseID = $course['id'];
+    return $courseID;
+}
 ?>
