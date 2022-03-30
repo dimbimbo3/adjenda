@@ -43,35 +43,52 @@ switch($action){
     //Instructor creates a new course
     case 'createCourse':
         //Course Name
-        $courseName = filter_input(INPUT_POST, 'courseName');
+        $courseName = filter_input(INPUT_POST, 'courseName'); //selected course name
 
         //Course Days
-        $selectedDays = $_POST['selectedDays']; //array of checked days
+        $selectedDays = $_POST['selectedDays']; //array of the selected days
         $days = seperateDays($selectedDays); //seperates the selected days by slashes
 
         //Course Time
         $duration = filter_input(INPUT_POST, 'duration'); //selected duration
         $startHours = filter_input(INPUT_POST, 'startHours'); //selected start hours
         $startMinutes = filter_input(INPUT_POST, 'startMinutes'); //selected start minutes
-        $endHrsMins = $calculateEndHrsMins($duration, $startHours, $starMinutes); //calculates endHours & endMinutes (returns array)
+        $endHrsMins = calculateEndHrsMins($duration, $startHours, $startMinutes); //calculates endHours & endMinutes (returns array)
         $endHours = $endHrsMins[0]; //course ending hours
         $endMinutes = $endHrsMins[1]; //course ending minutes
         $startTime = "".$startHours.":".$startMinutes.":00"; //created start time from start hours and minutes
         $endTime = "".$endHours.":".$endMinutes.":00"; //created end time from end hours and minutes
 
-        //adds the created course to the database 
-        //*create an if statement that prevents the course's creation if the day and time overlaps with a course from the given instructor!!!*
-        //*(get all courses' start and end times that coincide with the instructor's email and check if the start time of the new course is within that range)*
-        addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
+        //Adds the created course to the database after performing checks
+        $courses = getCoursesByEmail($_SESSION["accEmail"]); //retrieves the instructor's exisiting courses
+        $created = false; //boolean to represent if the course is successfully created or not
+        //checks if the instructor already has an existing course with the given name
+        if(checkInstrCourseNames($courses, $courseName)){
+            echo "<script> alert('COURSE HAS NOT BEEN CREATED: You already have an existing course with the selected name.'); </script>";
+        }
+        else{
+            //checks if the new course is on the same day as an existing course
+            //and if so then checks if there is a time conflict
+            if(checkInstrCourseDaysTime($courses, $selectedDays, $startTime)){
+                echo "<script> alert('COURSE HAS NOT BEEN CREATED: Your selected start time conflicts with one of your existing courses.'); </script>";
+            }
+            else{
+                addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
+                $created = true;
+            }
+        }
 
         //Lessons
-        //*need to create the lessons records that correspond with the selected days for the selected semesterSTART to semesterEND*
-        $semester = filter_input(INPUT_POST, 'semester');
-        $months = getSemesterMonths($semester);
-        determineLessonDates($months, $days);
+        //checks if the course was successfully created
+        if($created){
+            $semester = filter_input(INPUT_POST, 'semester'); //selected semester
+            $months = getSemesterMonths($semester); //determines the numerical months within the semester
+            $newID = getCourseID($_SESSION["accEmail"], $courseName); //retrieves the newly created course's ID
+            determineLessonDates($months, $selectedDays, $newID); //determines the dates and creates the lessons for the selected days
+        }
 
         //reloads the dashboard with the newly created course shown
-        echo "<script> document.location='dash.php'; </script>";
+        echo "<script> window.location='../dashboard/dash.php'; </script>";
         break;
 }
 
@@ -84,7 +101,7 @@ function seperateDays($selectedDays){
     $days = "";
 
     //seperates each day by a foward slash
-    for($i = 0; $i < count($selectedDays); $i++){
+    for($i = 0; $i < sizeof($selectedDays); $i++){
         $days .= $selectedDays[$i]."/";
     }
     //remove the last slash from the days string
@@ -126,7 +143,43 @@ function calculateEndHrsMins($duration, $startHours, $startMinutes){
     return $endHrsMins;
 }
 
-// Determines the months of the course based on the given semester
+//Determines if the instructor already has an existing course with the same given name
+function checkInstrCourseNames($courses, $courseName){
+    $match = false;
+    foreach($courses as $course){
+        if(strtoupper($courseName) == strtoupper($course['name'])){
+            $match = true;
+            break;
+        }
+    }
+
+    return $match;
+}
+
+//Determines if the instructor already has an existing course on the same day and if so if there is a time conflict
+function checkInstrCourseDaysTime($courses, $selectedDays, $startTime){
+    $conflict = false;
+    foreach($courses as $course){
+        $courseDaysArray = explode("/", $course['days']); //breaks up the course's days into an array of tokens delimited by /
+        //loops through each of the existing course's days
+        for($cdCount = 0; $cdCount < sizeof($courseDaysArray); $cdCount++){
+            //loops through each of the selected days for the new course
+            for($i = 0; $i < sizeof($selectedDays); $i++){
+                //checks if the selected day matches with the existing day
+                if($selectedDays[$i] == $courseDaysArray[$cdCount]){
+                    if((strtotime($startTime) >= strtotime($course['sTime'])) && (strtotime($startTime) <= strtotime($course['eTime']))){
+                        $conflict = true;
+                        break 3; //breaks out of all 3 for loops
+                    }
+                }
+            }
+        }
+    }
+
+    return $conflict;
+}
+
+//Determines the months of the course based on the given semester
 function getSemesterMonths($semester) {
     //determines the semester start and end based on the selected semester
     if($semester == "FALL"){
@@ -153,16 +206,26 @@ function getSemesterMonths($semester) {
     return $months;
 }
 
-function determineLessonDates($months, $courseDays){
-    $daysArray = explode("/", $courseDays); //breaks up the course's days into tokens delimited by /
-    $numOfMonths = sizeof($months); //retrieves the number of months in the semester
+//Determines the lesson dates for the course based on the previously provided information
+function determineLessonDates($months, $selectedDays, $courseID){
     //loops through each month in the semester's months array
-    for($count = 0; $count < $numOfMonths; $count++){
-        $numOfDays = cal_days_in_month(CAL_GREGORIAN, $months[$count], date("Y")); //retrieves the number of days in each given month
+    for($mCount = 0; $mCount < sizeof($months); $mCount++){
+        $numOfDays = cal_days_in_month(CAL_GREGORIAN, $months[$mCount], date("Y")); //retrieves the number of days in each given month
+
         //loops through each day in the given month
         for($days = 1; $days <= $numOfDays; $days++){
-            $julianDay=gregoriantojd($months[$count], $days, date("Y")); //converts gregorian date to a julian day count
-            $weekDay = jddayofweek($julianDay, 1); //retrieves the name of the weekday for the julian day count
+            $julianDay = gregoriantojd($months[$mCount], $days, date("Y")); //converts gregorian date to a julian day count
+            $weekday = jddayofweek($julianDay, 1); //retrieves the name of the weekday for the julian day count
+
+            //loops through the selected days for the course
+            for($sdCount = 0; $sdCount < sizeof($selectedDays); $sdCount++){
+                //checks if the current weekday matches one of the selected course days
+                if($weekday == $selectedDays[$sdCount]){
+                    $day = str_pad(strval($days), 2, "0", STR_PAD_LEFT); //pads lesson date's day with a 0 if it is only one digit
+                    $lessonDate = date("Y")."-".$months[$mCount]."-".$day; //creates an appropriately formatted string for the given date to be inserted as an SQL DATE
+                    addLesson($courseID, $lessonDate); //creates a new lesson in the database for the given course and its date
+                }
+            }
         }
     }
 }
