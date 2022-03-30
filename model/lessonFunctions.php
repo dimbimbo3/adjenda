@@ -1,7 +1,21 @@
 <?php require_once('database.php'); ?>
 
 <?php
-// Checks if the current date is a lesson for the selected course
+//Adds a new lesson to the database
+function addLesson($courseID, $lDate){
+    global $db;
+    $query = 'INSERT INTO LESSONS
+                 (courseID, lDate)
+              VALUES
+                (:courseID, :lDate)';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':courseID', $courseID);
+    $statement->bindValue(':lDate', $lDate);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+//Checks if the current date is a lesson for the selected course
 function checkLessonDate($courseID, $currentDate) {
     global $db;
     $query = 'SELECT * FROM LESSONS
