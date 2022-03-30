@@ -163,7 +163,7 @@
                                 <div class="card bg-light mb-3" style="height: 12rem; width: 18rem;">
                                     <div class="card-header">Course ID: <?php echo $course['id'] ?></div>
                                     <div class="card-body text-dark">
-                                        <h5 class="card-title" style="padding-bottom:10%"><?php echo $course['name'] ?></h5>
+                                        <h5 class="card-title"><?php echo $course['name'] ?></h5>
                                         <form action="dash.php" method="post">
                                             <input type="hidden" name="action" value="selectCourse">
                                             <input type="hidden" name="courseID" value="<?php echo $course['id'] ?>">
