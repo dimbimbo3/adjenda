@@ -56,8 +56,8 @@ switch($action){
         $endHrsMins = calculateEndHrsMins($duration, $startHours, $startMinutes); //calculates endHours & endMinutes (returns array)
         $endHours = $endHrsMins[0]; //course ending hours
         $endMinutes = $endHrsMins[1]; //course ending minutes
-        $startTime = "".$startHours.":".$startMinutes.":00"; //created start time from start hours and minutes
-        $endTime = "".$endHours.":".$endMinutes.":00"; //created end time from end hours and minutes
+        $startTime = $startHours.":".$startMinutes.":00"; //created start time from start hours and minutes
+        $endTime = $endHours.":".$endMinutes.":00"; //created end time from end hours and minutes
 
         //Adds the created course to the database after performing checks
         $courses = getCoursesByEmail($_SESSION["accEmail"]); //retrieves the instructor's exisiting courses
