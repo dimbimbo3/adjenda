@@ -54,7 +54,7 @@
 						</a>
 					</li>
 				</ul>
-				<ul class="navbar-nav" style="margin-left:63%">
+				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
 						<a class="nav-link" style="color: white;">
 							<?php if($_SESSION["accType"] == "I") : ?>
