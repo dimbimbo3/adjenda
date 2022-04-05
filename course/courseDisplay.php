@@ -59,6 +59,8 @@
 						<a class="nav-link" style="color: white;">
 							<?php if($_SESSION["accType"] == "I") : ?>
 								<?php
+								//NEED TO SWITCH CHECK TO IF CURRENT LESSON'S ATTENDNACE CODE FIELD IS NULL OR NOT
+								//*currently generating one attendance code makes it display for all courses*
 									if(isset($_SESSION['attendanceCode'])){
 										$code = $_SESSION['attendanceCode'];
 										echo "Attendance Code : ".$code;
