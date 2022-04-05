@@ -77,10 +77,15 @@
 				<table class="table table-bordered table-striped mb-0">
 					<tbody>
 						<?php $numofstudents = sizeof($students); ?>
+						<?php $enrollmentCount = 0; //initial enrollment count ?>
 						<?php for ($x = 0; $x < $numofstudents; $x++) : ?>
-							<tr>
-								<th scope="row" style="padding-left: 15%"><?php echo $students[$x]['fName']." ".$students[$x]['lName']; ?></th>
-							</tr>
+							<!--Checks if the student has been enrolled before showing them in the list-->
+							<?php if ($students[$x]['enrollment'] != 0) : ?>
+								<tr>
+									<?php $enrollmentCount += 1; //increments enrollment count for each student found?>
+									<th scope="row" style="padding-left: 15%"><?php echo $students[$x]['fName']." ".$students[$x]['lName']; ?></th>
+								</tr>
+							<?php endif; ?>
 						<?php endfor; ?>
 					</tbody>
 				</table>
@@ -113,7 +118,7 @@
 									<input type="hidden" name="action" value="takeAttendance">
 									<!--Only enables the 'Take Attendance' button if there is at least one student in the roster-->
 									<?php
-										if($numofstudents != 0 && !(isset($_SESSION['attendanceCode']))){
+										if($enrollmentCount != 0 && !(isset($_SESSION['attendanceCode']))){
 											echo "<button type=\"submit\" class=\"btn btn-primary\" style=\"width: 182px\">Take Attendance</button>";
 										}
 										elseif(isset($_SESSION['attendanceCode'])){
