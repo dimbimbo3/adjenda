@@ -28,15 +28,18 @@ switch($action){
     //generates the attendance code for the current lesson
     case 'takeAttendance' :
         $course = getCourseByID($_SESSION['courseID']);
-        //*needs logic for checking that the current date aligns with one of the selected days for a given course, and that the current time falls within the start/end time for it*
-        //(if a lesson is not happening at the current time then do not generate code and instead display message saying that a class is not in progress)
+        $date = new DateTime("now", new DateTimeZone('America/New_York') );
+        $currentTime = $date->format('H:i:s');
+        //checks if the current date has a lesson
         if(checkLessonDate($_SESSION['courseID'], date("Y-m-d"))){
-            //if the current date has a lesson, check that the time is within the range of the lesson
-            if(strtotime(date('H:m:s')) >= strtotime($course['startTime']) && strtotime(date('H:m:s')) <= strtotime($course['endTime'])){
+            //if the current date has a lesson, then check that the time is within the range of the lesson's start and end
+            if((strtotime($currentTime) >= strtotime($course['sTime'])) && (strtotime($currentTime) <= strtotime($course['eTime']))){
+                echo '<script> alert("IN SECOND IF STATEMENT"); </script>';
                 $_SESSION['attendanceCode'] = getAttendanceCode();
                 echo "<script> alert('Attendance code has been generated for the current lesson.'); </script>";
             }
         }
+        //else a lesson is not happening at the current time, so do not generate code and instead display message saying that a class is not in progress
         else{
             echo "<script> alert('NO CODE HAS BEEN GENERATED: The class is not in progress'); </script>";
         }

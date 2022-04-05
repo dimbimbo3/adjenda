@@ -26,15 +26,14 @@ function checkLessonDate($courseID, $currentDate) {
     $lessons = $statement->fetchAll();
     $statement->closeCursor();
 
-    $result = false;
+    $found = false;
     foreach($lessons as $lesson){
-        if($currentDate == $lesson['ldate']){
-            $result = true;
+        if($currentDate == $lesson['lDate']){
+            $found = true;
             break; //breaks out of the loop if found
         }
     }
-
-    return $result;
+    return $found;
 }
 
 //Generates the instructor's random attendance code for a given class lesson
