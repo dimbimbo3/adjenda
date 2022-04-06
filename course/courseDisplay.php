@@ -181,6 +181,7 @@ ul.no-bullets {
                                 });
                             });
                         </script>
+						<!--Only enables the 'Remove Student' button if there is at least one student in the roster-->
 						<?php 
 							if($enrollmentCount != 0){
 								echo "<button class=\"btn btn-primary btn-block\" href=\"#\" data-toggle=\"modal\" data-target=\"#dropModal\" style=\"width:40%;\">Remove Student</button>";
