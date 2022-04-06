@@ -137,17 +137,15 @@ ul.no-bullets {
 											<div class="modal-header">
 												<ul class="no-bullets">
                                                 <li><h3>Drop Student</h3></li>
-													<li><div class="table-wrapper-scroll-y my-custom-scrollbar-popup">
+													<li><div class="table-wrapper-scroll-y my-custom-scrollbar-popup students">
 														<table class="table table-bordered table-striped mb-0">
 															<tbody>
 																<?php $numofstudents = sizeof($students); ?>
 																	<?php for ($x = 0; $x < $numofstudents; $x++) : ?>
 																		<tr>
 																			<th scope="row" style="padding-left: 15%">
-																			<div class="form-group students">
 																				<input type="checkbox" class="form-check-input" name="removedStudent[]" value="<?php echo $students[$x]['stuEmail'] ?>" required>
 																				<label class="form-check-label"><?php echo " ".$students[$x]['fName']." ".$students[$x]['lName']; ?></label>
-																			</div>
 																			</th>
 																		</tr>
 																	<?php endfor; ?>
