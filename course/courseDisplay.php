@@ -145,7 +145,8 @@ ul.no-bullets {
 																		<tr>
 																			<th scope="row" style="padding-left: 15%">
 																			<div class="form-group students">
-																				<input type="checkbox" name="removedStudent[]" value="<?php echo $students[$x]['stuEmail'] ?>" required><?php echo " ".$students[$x]['fName']." ".$students[$x]['lName']; ?>
+																				<input type="checkbox" class="form-check-input" name="removedStudent[]" value="<?php echo $students[$x]['stuEmail'] ?>" required>
+																				<label class="form-check-label"><?php echo " ".$students[$x]['fName']." ".$students[$x]['lName']; ?></label>
 																			</div>
 																			</th>
 																		</tr>
@@ -164,23 +165,30 @@ ul.no-bullets {
 						</form>
 						<!--Form Scripting-->
 						<script type="text/javascript">
-                                        //Requires at least one checkbox be selected from students
-                                        $(function(){
-                                            var requiredCheckboxes = $('.students :checkbox[required]');
-											var dropButton = $('.drop :submit[disabled]');
-                                            requiredCheckboxes.change(function(){
-                                                if(requiredCheckboxes.is(':checked')) {
-                                                    requiredCheckboxes.removeAttr('required');
-													dropButton.removeAttr('disabled');
-                                                } 
-                                                else {
-                                                    requiredCheckboxes.attr('required', 'required');
-													dropButton.attr('disabled', 'disabled');
-                                                }
-                                            });
-                                        });
-                            </script>
-						<button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#dropModal" style="width:40%;">Remove Student</button> 
+                            //Requires at least one checkbox be selected from students
+                            $(function(){
+                                var requiredCheckboxes = $('.students :checkbox[required]');
+								var dropButton = $('.drop :submit[disabled]');
+                                requiredCheckboxes.change(function(){
+                                    if(requiredCheckboxes.is(':checked')) {
+                                        requiredCheckboxes.removeAttr('required');
+										dropButton.removeAttr('disabled');
+                                    } 
+                                    else {
+                                        requiredCheckboxes.attr('required', 'required');
+										dropButton.attr('disabled', 'disabled');
+                                    }
+                                });
+                            });
+                        </script>
+						<?php 
+							if($enrollmentCount != 0){
+								echo "<button class=\"btn btn-primary btn-block\" href=\"#\" data-toggle=\"modal\" data-target=\"#dropModal\" style=\"width:40%;\">Remove Student</button>";
+							}
+							else{
+								echo "<button class=\"btn btn-primary btn-block\" href=\"#\" data-toggle=\"modal\" data-target=\"#dropModal\" style=\"width:40%;\" disabled>Remove Student</button>";
+							}
+						?> 
 					</div>
 				<?php endif; ?>
 			</div>
