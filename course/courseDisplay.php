@@ -259,6 +259,7 @@ ul.no-bullets {
 													</select>
 												</div>
 											</div>
+											<!--Form Scripting-->
 											<script type='text/javascript'>
 												//Disables the 'Download Log' button until a date has been selected
 												$('select').change(function() {
