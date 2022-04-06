@@ -8,6 +8,17 @@
 	width: 600px;
 	overflow: auto;
 }
+.my-custom-scrollbar-popup {
+	position: relative;
+	height: 350px;
+	width: 468px;
+	overflow: auto;
+}
+ul.no-bullets {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
 .table-wrapper-scroll-y {
 	display: block;
 }
@@ -92,6 +103,88 @@
 					</tbody>
 				</table>
 			</div>
+
+			<div style="padding-top: 2%">
+				<?php if($_SESSION["accType"] == "I") : ?>
+					<!-- Add Student -->
+					<div>
+						<form action="course.php" method="post">
+							<input type="hidden" name="action" value="addStudent">
+								<div class="modal fade" id="addModal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+											<ul class="no-bullets" style="width:100%">
+                                                <li><h3>Add Student</h3></li>
+												
+												<li><input type="searchstudent" class="form-control" style="width:80%; float:left" id="searchstudent" name="searchstudent" placeholder="Search student by email" required>
+												<button type="submit" class="btn btn-primary" style="float:right">Search</button></li>
+												</ul>
+                                            </div>
+										</div>
+									</div>
+								</div>
+						</form>
+						<button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#addModal" style="width:25%; float:left;">Add Student</button>
+					</div>
+					<!-- Drop Student-->
+					<div style="padding-left: 30%">
+						<form action="course.php" method="post">
+							<input type="hidden" name="action" value="dropStudent">
+								<div class="modal fade" id="dropModal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<ul class="no-bullets">
+                                                <li><h3>Drop Student</h3></li>
+													<li><div class="table-wrapper-scroll-y my-custom-scrollbar-popup">
+														<table class="table table-bordered table-striped mb-0">
+															<tbody>
+																<?php $numofstudents = sizeof($students); ?>
+																	<?php for ($x = 0; $x < $numofstudents; $x++) : ?>
+																		<tr>
+																			<th scope="row" style="padding-left: 15%">
+																			<div class="form-group students">
+																				<input type="checkbox" name="removedStudent[]" value="<?php echo $students[$x]['stuEmail'] ?>" required><?php echo " ".$students[$x]['fName']." ".$students[$x]['lName']; ?>
+																			</div>
+																			</th>
+																		</tr>
+																	<?php endfor; ?>
+															</tbody>
+														</table>
+													</div></li>
+													<div class="form-group drop">
+														<li style="padding-top: 3%"><button type="submit" class="btn btn-primary" style="width:40%;" disabled>Drop Student</button></li>
+													</div>	
+												</ul>
+                                            </div>
+										</div>
+									</div>
+								</div>
+						</form>
+						<!--Form Scripting-->
+						<script type="text/javascript">
+                                        //Requires at least one checkbox be selected from students
+                                        $(function(){
+                                            var requiredCheckboxes = $('.students :checkbox[required]');
+											var dropButton = $('.drop :submit[disabled]');
+                                            requiredCheckboxes.change(function(){
+                                                if(requiredCheckboxes.is(':checked')) {
+                                                    requiredCheckboxes.removeAttr('required');
+													dropButton.removeAttr('disabled');
+                                                } 
+                                                else {
+                                                    requiredCheckboxes.attr('required', 'required');
+													dropButton.attr('disabled', 'disabled');
+                                                }
+                                            });
+                                        });
+                            </script>
+						<button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#dropModal" style="width:40%;">Remove Student</button> 
+					</div>
+				<?php endif; ?>
+			</div>
+
 		</div>
 
 		<?php if($_SESSION["accType"] == "S") : ?>
