@@ -68,15 +68,13 @@ switch($action){
         include('courseDisplay.php');
         break;
     case 'dropStudent':
-        $removedStudents = $_POST['removedStudent']; //removedStudents array
+        $removedStudents = $_POST['removedStudent']; //array of students to be removed
 
-        //cycle through students and call dropStudent function for each
+        //cycle through array and call dropStudent function for each student
         for($i = 0; $i < sizeof($removedStudents); $i++){
-            echo '<script> alert("Email:'.$removedStudents[$i].'"); </script>';
+            echo '<script> alert("'.$removedStudents[$i].' has been dropped from the course."); </script>';
             //dropStudent($removedStudents[$i]);
         }
-
-        echo "<script> alert('Selected students have been removed.'); </script>";
 
         echo "<script> window.location='../course/course.php'; </script>"; //return to course page
         break;
