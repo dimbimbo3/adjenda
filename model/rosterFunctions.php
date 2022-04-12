@@ -14,6 +14,17 @@ function getStudentRosterByID($courseID) {
     return $students;
 }
 
+// Drops a student from the current course selected by instructor
+function dropStudent($stuEmail, $courseID){
+    global $db;
+    $query = 'DELETE FROM ROSTERS WHERE stuEmail = :stuEmail AND courseID = :courseID';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':courseID', $courseID);
+    $statement->bindValue(':stuEmail', $stuEmail);
+    $statement->execute();
+}
+
+
 //Retrieves all of the course IDs for the rosters that a student is in
 function getRosterCourseIDsByEmail($stuEmail){
     global $db;
