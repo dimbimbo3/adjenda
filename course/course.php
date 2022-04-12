@@ -56,23 +56,6 @@ switch($action){
         //downloadLog($_SESSION['courseID'], $selectedDate)
         echo "<script> window.location='../course/course.php'; </script>"; //return to course page
         break;
-    //displays the searched products
-    case 'search':
-        $searchTerm = filter_input(INPUT_POST, 'searchStudent');
-        $foundStudents = searchStudentsByEmail($searchTerm);
-        /*if($radioButton == "email"){
-            $foundStudents = searchStudentsByEmail($searchTerm);
-        }
-        elif($radioButton == "name"){
-            $foundStudents = searchStudentsByName($searchTerm);
-        }*/
-
-        foreach($foundStudents as $foundStudent){
-            echo '<script> alert(Found: "'.$foundStudent['fName'].'" "'.$foundStudent['lName'].'"); </script>';
-        }
-
-        include('courseDisplay.php');
-        break;
     case 'dropStudent':
         $removedStudents = $_POST['removedStudent']; //array of students to be removed
 
