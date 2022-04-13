@@ -3,7 +3,7 @@
 
 <style>
 	.my-custom-scrollbar {
-	position: relaive;
+	position: relative;
 	height: 450px;
 	width: 600px;
 	overflow: auto;
@@ -71,26 +71,55 @@ ul.no-bullets {
 		<!-- Found Students -->
 		<div style="padding-left: 5%; padding-bottom: 3%; float: left" width="100%">
 			<?php if(!empty($eligibleStudents)): ?>
-				<h3>Students found with: '<?php echo $searchTerm ?>'</h3>
-				<div class="table-wrapper-scroll-y my-custom-scrollbar" >
-					<table class="table table-bordered table-striped mb-0">
-						<tbody>
-							<?php foreach($eligibleStudents as $eligibleStudent) : ?>
-								<tr>
-									<th scope="row" style="padding-left: 15%">
-										<div class="students">
-											<input type="checkbox" class="form-check-input" name="addedStudent[]" value="<?php echo $eligibleStudent['email'] ?>" required>
-											<label class="form-check-label"><?php echo " ".$eligibleStudent['fName']." ".$eligibleStudent['lName']; ?></label>
-										</div>
-									</th>
-								</tr>
-							<?php endforeach; ?>
-						</tbody>
-					</table>
-				</div>
+				<form action="course.php" method="post">
+					<input type="hidden" name="action" value="addStudents">
+					<ul class="no-bullets">
+						<li><div class="table-wrapper-scroll-y my-custom-scrollbar" >
+							<table class="table table-bordered table-striped mb-0">
+								<tbody>
+									<tr><h3>Students found with: '<?php echo $searchTerm ?>'</h3></tr>
+									<?php foreach($eligibleStudents as $eligibleStudent) : ?>
+										<tr>
+											<th scope="row" style="padding-left: 15%">
+												<div class="students">
+													<input type="hidden" name="addedStuFNames[]" value="<?php echo $eligibleStudent['fName'] ?>">
+													<input type="hidden" name="addedStuLNames[]" value="<?php echo $eligibleStudent['lName'] ?>">
+													<input type="checkbox" class="form-check-input" name="addedStuEmails[]" value="<?php echo $eligibleStudent['email'] ?>" required>
+													<label class="form-check-label"><?php echo " ".$eligibleStudent['fName']." ".$eligibleStudent['lName']." (".$eligibleStudent['email'].")"; ?></label>
+												</div>
+											</th>
+										</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+						</div></li>
+						<div class="add">
+							<li style="padding-top: 2%"><button type="submit" class="btn btn-primary btn-block" style="width:25%; float:left;" disabled>Add Students</button></li>
+						</div>
+					</ul>
+				</form>
+				<!--Form Scripting-->
+				<script type="text/javascript">
+                            //Requires at least one checkbox be selected from students
+                            $(function(){
+                                var requiredCheckboxes = $('.students :checkbox[required]');
+								var addButton = $('.add :submit[disabled]');
+                                requiredCheckboxes.change(function(){
+                                    if(requiredCheckboxes.is(':checked')) {
+                                        requiredCheckboxes.removeAttr('required');
+										addButton.removeAttr('disabled');
+                                    } 
+                                    else {
+                                        requiredCheckboxes.attr('required', 'required');
+										addButton.attr('disabled', 'disabled');
+                                    }
+                                });
+                            });
+                        </script>
 			<?php else: ?>
 				<h3>No students found with: '<?php echo $searchTerm ?>'</h3>
 			<?php endif; ?>
+		</div>
 	</div>
 </main>
 
