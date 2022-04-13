@@ -50,7 +50,7 @@ ul.no-bullets {
 			<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #0079C2; border-radius: 0.5em; height: 8%;">
 				<ul class="navbar-nav" style="margin-left:2%">
 					<li class="nav-item">
-						<a class="nav-link" style="color: white;" href="#">
+						<a class="nav-link" style="color: white;" href="../course/course.php">
 							Class Roster
 						</a>
 					</li>
