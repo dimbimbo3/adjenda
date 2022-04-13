@@ -50,7 +50,7 @@ ul.no-bullets {
 			<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #0079C2; border-radius: 0.5em; height: 8%;">
 				<ul class="navbar-nav" style="margin-left:2%">
 					<li class="nav-item">
-						<a class="nav-link" style="color: white;" href="#">
+						<a class="nav-link" style="color: white;" href="../course/course.php">
 							Class Roster
 						</a>
 					</li>
@@ -70,20 +70,27 @@ ul.no-bullets {
 
 		<!-- Found Students -->
 		<div style="padding-left: 5%; padding-bottom: 3%; float: left" width="100%">
-			<h3>Students found with: <?php echo $searchTerm ?></h3>
-			<div class="table-wrapper-scroll-y my-custom-scrollbar" >
-				<table class="table table-bordered table-striped mb-0">
-					<tbody>
-						<?php $numofstudents = sizeof($foundStudents); ?>
-						<?php for ($x = 0; $x < $numofstudents; $x++) : ?>
-							<tr>
-								<?php $enrollmentCount += 1; //increments enrollment count for each student found?>
-								<th scope="row" style="padding-left: 15%"><?php echo $foundStudents[$x]['fName']." ".$foundStudents[$x]['lName']; ?></th>
-							</tr>
-						<?php endfor; ?>
-					</tbody>
-				</table>
-			</div>
+			<?php if(!empty($eligibleStudents)): ?>
+				<h3>Students found with: '<?php echo $searchTerm ?>'</h3>
+				<div class="table-wrapper-scroll-y my-custom-scrollbar" >
+					<table class="table table-bordered table-striped mb-0">
+						<tbody>
+							<?php foreach($eligibleStudents as $eligibleStudent) : ?>
+								<tr>
+									<th scope="row" style="padding-left: 15%">
+										<div class="students">
+											<input type="checkbox" class="form-check-input" name="addedStudent[]" value="<?php echo $eligibleStudent['email'] ?>" required>
+											<label class="form-check-label"><?php echo " ".$eligibleStudent['fName']." ".$eligibleStudent['lName']; ?></label>
+										</div>
+									</th>
+								</tr>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			<?php else: ?>
+				<h3>No students found with: '<?php echo $searchTerm ?>'</h3>
+			<?php endif; ?>
 	</div>
 </main>
 
