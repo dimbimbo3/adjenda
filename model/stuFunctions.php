@@ -85,9 +85,10 @@ function searchStudentsByEmail($email){
     $students = $statement->fetchAll();
     $statement->closeCursor();
 
-
-    //if $students is null return empty array
-    return $students;
+    if($students == null)
+        return array();
+    else
+        return $students;
 }
 
 // Updates the account password associated with the given student email
