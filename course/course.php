@@ -5,6 +5,7 @@ require_once('../model/courseFunctions.php');
 require_once('../model/rosterFunctions.php');
 require_once('../model/attendanceFunctions.php');
 require_once('../model/lessonFunctions.php');
+require_once('../model/stuFunctions.php');
 
 //retrieves the chosen action
 $action = filter_input(INPUT_POST, 'action');
@@ -67,12 +68,11 @@ switch($action){
             $foundStudents = searchStudentsByName($searchTerm);
         }*/
 
-        /*
-            if(!empty($foundStudents)){
-                foreach($foundStudents as $foundStudent){
-                    echo '<script> alert(Found: '.$foundStudent['fName'].'" "'.$foundStudent['lName'].'"); </script>';
-                }
-            }*/
+        //checks if each student found by the search is already in the class or not
+        foreach($foundStudents as $foundStudent){
+            if(!(checkRosterForStudent($_SESSION['courseID'], $foundStudent['email'])))
+                $eligibleStudents[] = $foundStudent;
+        }
 
         include('searchDisplay.php');
         break;
