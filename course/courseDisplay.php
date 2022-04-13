@@ -133,7 +133,7 @@ ul.no-bullets {
 					<!-- Drop Student-->
 					<div style="padding-left: 30%">
 						<form action="course.php" method="post">
-							<input type="hidden" name="action" value="dropStudent">
+							<input type="hidden" name="action" value="dropStudents">
 								<div class="modal fade" id="dropModal">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -148,7 +148,7 @@ ul.no-bullets {
 																		<tr>
 																			<th scope="row" style="padding-left: 15%">
 																				<div class="students">
-																					<input type="checkbox" class="form-check-input" name="removedStudent[]" value="<?php echo $students[$x]['stuEmail'] ?>" required>
+																					<input type="checkbox" class="form-check-input" name="removedStuEmails[]" value="<?php echo $students[$x]['stuEmail'] ?>" required>
 																					<label class="form-check-label"><?php echo " ".$students[$x]['fName']." ".$students[$x]['lName']; ?></label>
 																				</div>
 																			</th>
