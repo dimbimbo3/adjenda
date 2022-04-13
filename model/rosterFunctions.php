@@ -14,6 +14,34 @@ function getStudentRosterByID($courseID) {
     return $students;
 }
 
+// Generates cryptographically secure enrollment code for new student in roster
+function generateEnrollmentCode(){
+    $bytes = random_bytes(5);
+    $eCode = bin2hex($bytes);
+
+    return $eCode;
+}
+
+// Adds a student to the currrent course selected by instructor
+function addToRoster($courseID, $stuEmail, $fName, $lName, $eCode){
+    $enrollment = 1; //automatically enroll students for now
+
+    global $db;
+    $query = 'INSERT INTO ROSTERS 
+                (courseID, stuEmail, fName, lName, eCode, enrollment) 
+              VALUES 
+                (:courseID, :stuEmail, :fName, :lName, :eCode, :enrollment) ';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':courseID', $courseID);
+    $statement->bindValue(':stuEmail', $stuEmail);
+    $statement->bindValue(':fName', $fName);
+    $statement->bindValue(':lName', $lName);
+    $statement->bindValue(':eCode', $eCode);
+    $statement->bindValue(':enrollment', $enrollment);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
 // Drops a student from the current course selected by instructor
 function dropStudent($stuEmail, $courseID){
     global $db;
@@ -22,6 +50,7 @@ function dropStudent($stuEmail, $courseID){
     $statement->bindValue(':courseID', $courseID);
     $statement->bindValue(':stuEmail', $stuEmail);
     $statement->execute();
+    $statement->closeCursor();
 }
 
 
@@ -51,14 +80,6 @@ function getRosterEnrollment($courseID, $stuEmail){
     $statement->closeCursor();
     $status = $enrollment['enrollment'];
     return $status;
-}
-
-// Generates cryptographically secure enrollment code for new student in roster
-function generateEnrollmentCode(){
-    $bytes = random_bytes(5);
-    $eCode = bin2hex($bytes);
-
-    return $eCode;
 }
 
 // Checks if a student is in the given course's roster
