@@ -76,8 +76,22 @@ switch($action){
 
         include('searchDisplay.php');
         break;
-    case 'dropStudent':
-        $removedStudents = $_POST['removedStudent']; //array of students to be removed
+    case 'addStudents':
+        $addedStudents = $_POST['addedStuEmails']; //array of student emails to be added
+        $addedStuFNames = $_POST['addedStuFNames']; //array of student fNames to be added
+        $addedStuLNames = $_POST['addedStuLNames']; //array of student lNames to be added
+        $enrollmentCode = generateEnrollmentCode(); //generated enrollment code
+
+        //cycle through array and call addStudent function for each student
+        for($i = 0; $i < sizeof($addedStudents); $i++){
+            echo '<script> alert("'.$addedStuFNames[$i].' '.$addedStuLNames[$i].' ('.$addedStudents[$i].') has been added to the course."); </script>';
+            addToRoster($_SESSION['courseID'], $addedStudents[$i], $addedStuFNames[$i], $addedStuLNames[$i], $enrollmentCode);
+        }
+
+        echo "<script> window.location='../course/course.php'; </script>"; //return to course page
+        break;
+    case 'dropStudents':
+        $removedStudents = $_POST['removedStuEmails']; //array of student emails to be removed
 
         //cycle through array and call dropStudent function for each student
         for($i = 0; $i < sizeof($removedStudents); $i++){
