@@ -3,7 +3,7 @@
 
 <style>
 	.my-custom-scrollbar {
-	position: relaive;
+	position: relative;
 	height: 450px;
 	width: 600px;
 	overflow: auto;
@@ -128,7 +128,7 @@ ul.no-bullets {
 									</div>
 								</div>
 						</form>
-						<button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#searchModal" style="width:25%; float:left;">Add Student</button>
+						<button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#searchModal" style="width:25%; float:left;">Add Students</button>
 					</div>
 					<!-- Drop Student-->
 					<div style="padding-left: 30%">
@@ -138,31 +138,29 @@ ul.no-bullets {
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
-												<div class="modal-body">
-													<ul class="no-bullets">
+												<ul class="no-bullets">
 													<li><h3>Drop Student</h3></li>
-														<li><div class="table-wrapper-scroll-y my-custom-scrollbar-popup">
-															<table class="table table-bordered table-striped mb-0">
-																<tbody>
-																	<?php $numofstudents = sizeof($students); ?>
-																		<?php for ($x = 0; $x < $numofstudents; $x++) : ?>
-																			<tr>
-																				<th scope="row" style="padding-left: 15%">
-																					<div class="students">
-																						<input type="checkbox" class="form-check-input" name="removedStudent[]" value="<?php echo $students[$x]['stuEmail'] ?>" required>
-																						<label class="form-check-label"><?php echo " ".$students[$x]['fName']." ".$students[$x]['lName']; ?></label>
-																					</div>
-																				</th>
-																			</tr>
-																		<?php endfor; ?>
-																</tbody>
-															</table>
-														</div></li>
-														<div class="drop">
-															<li style="padding-top: 3%"><button type="submit" class="btn btn-primary" style="width:40%;" disabled>Drop Student</button></li>
-														</div>	
-													</ul>
-												</div>
+													<li><div class="table-wrapper-scroll-y my-custom-scrollbar-popup">
+														<table class="table table-bordered table-striped mb-0">
+															<tbody>
+																<?php $numofstudents = sizeof($students); ?>
+																	<?php for ($x = 0; $x < $numofstudents; $x++) : ?>
+																		<tr>
+																			<th scope="row" style="padding-left: 15%">
+																				<div class="students">
+																					<input type="checkbox" class="form-check-input" name="removedStudent[]" value="<?php echo $students[$x]['stuEmail'] ?>" required>
+																					<label class="form-check-label"><?php echo " ".$students[$x]['fName']." ".$students[$x]['lName']; ?></label>
+																				</div>
+																			</th>
+																		</tr>
+																	<?php endfor; ?>
+															</tbody>
+														</table>
+													</div></li>
+													<div class="drop">
+														<li style="padding-top: 3%"><button type="submit" class="btn btn-primary" style="width:40%;" disabled>Drop Students</button></li>
+													</div>	
+												</ul>
                                             </div>
 										</div>
 									</div>
@@ -189,10 +187,10 @@ ul.no-bullets {
 						<!--Only enables the 'Remove Student' button if there is at least one student in the roster-->
 						<?php 
 							if($enrollmentCount != 0){
-								echo "<button class=\"btn btn-primary btn-block\" href=\"#\" data-toggle=\"modal\" data-target=\"#dropModal\" style=\"width:40%;\">Remove Student</button>";
+								echo "<button class=\"btn btn-primary btn-block\" href=\"#\" data-toggle=\"modal\" data-target=\"#dropModal\" style=\"width:40%;\">Remove Students</button>";
 							}
 							else{
-								echo "<button class=\"btn btn-primary btn-block\" href=\"#\" data-toggle=\"modal\" data-target=\"#dropModal\" style=\"width:40%;\" disabled>Remove Student</button>";
+								echo "<button class=\"btn btn-primary btn-block\" href=\"#\" data-toggle=\"modal\" data-target=\"#dropModal\" style=\"width:40%;\" disabled>Remove Students</button>";
 							}
 						?> 
 					</div>
