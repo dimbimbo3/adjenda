@@ -60,4 +60,23 @@ function generateEnrollmentCode(){
 
     return $eCode;
 }
+
+// Checks if a student is in the given course's roster
+function checkRosterForStudent($courseID, $stuEmail){
+    global $db;
+    $query = 'SELECT * FROM ROSTERS
+                WHERE courseID = :courseID AND stuEmail = :stuEmail';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':courseID', $courseID);
+    $statement->bindValue(':stuEmail', $stuEmail);
+    $statement->execute();
+    $checked = $statement->fetch();
+    $statement->closeCursor();
+
+    $inRoster = false;
+    if(!empty($checked))
+        $inRoster = true;
+
+    return $inRoster;
+}
 ?>
