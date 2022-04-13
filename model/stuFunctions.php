@@ -61,11 +61,13 @@ function addStudent($email,$fName,$lName,$hashedPass){
 
 // Retrieves the students containing the search term for their last name
 function searchStudentsByLastName($lName){
+    $pattern = '%'.$lName.'%';
+
     global $db;
     $query = "SELECT * from STUDENTS
-              WHERE lName like '%:lName%'";
+              WHERE lName like :pattern";
     $statement = $db->prepare($query);
-    $statement->bindValue(':lName', $lName);
+    $statement->bindValue(':pattern', $pattern);
     $statement->execute();
     $students = $statement->fetchAll();
     $statement->closeCursor();
@@ -75,20 +77,18 @@ function searchStudentsByLastName($lName){
 
 // Retrieves the students containing the search term for their last name
 function searchStudentsByEmail($email){
-    global $db;
+    $pattern = '%'.$email.'%';
 
+    global $db;
     $query = "SELECT * from STUDENTS
-              WHERE email like '%:email%'";
+              WHERE email like :pattern";
     $statement = $db->prepare($query);
-    $statement->bindValue(':email', $email);
+    $statement->bindValue(':pattern', $pattern);
     $statement->execute();
     $students = $statement->fetchAll();
     $statement->closeCursor();
 
-    if($students == null)
-        return array();
-    else
-        return $students;
+    return $students;
 }
 
 // Updates the account password associated with the given student email
