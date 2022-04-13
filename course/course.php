@@ -80,10 +80,10 @@ switch($action){
         $addedStudents = $_POST['addedStuEmails']; //array of student emails to be added
         $addedStuFNames = $_POST['addedStuFNames']; //array of student fNames to be added
         $addedStuLNames = $_POST['addedStuLNames']; //array of student lNames to be added
-        $enrollmentCode = generateEnrollmentCode(); //generated enrollment code
 
         //cycle through array and call addStudent function for each student
         for($i = 0; $i < sizeof($addedStudents); $i++){
+            $enrollmentCode = generateEnrollmentCode(); //generated unique enrollment code
             echo '<script> alert("'.$addedStuFNames[$i].' '.$addedStuLNames[$i].' ('.$addedStudents[$i].') has been added to the course."); </script>';
             addToRoster($_SESSION['courseID'], $addedStudents[$i], $addedStuFNames[$i], $addedStuLNames[$i], $enrollmentCode);
         }
