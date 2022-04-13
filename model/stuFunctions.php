@@ -76,6 +76,7 @@ function searchStudentsByLastName($lName){
 // Retrieves the students containing the search term for their last name
 function searchStudentsByEmail($email){
     global $db;
+
     $query = "SELECT * from STUDENTS
               WHERE email like '%:email%'";
     $statement = $db->prepare($query);
@@ -84,6 +85,8 @@ function searchStudentsByEmail($email){
     $students = $statement->fetchAll();
     $statement->closeCursor();
 
+
+    //if $students is null return empty array
     return $students;
 }
 

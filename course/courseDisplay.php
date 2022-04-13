@@ -37,29 +37,6 @@ ul.no-bullets {
 }
 </style>
 
-<!-- JavaScript Functions -->
-<script type="text/javascript">
-	function search(){
-		var searchTerm = document.getElementById("searchStudent").value;
-		alert("Found:" + searchTerm);
-        //$foundStudents = searchStudentsByEmail($searchTerm); //need to call function from php somehow
-        /*if($radioButton == "email"){
-            $foundStudents = searchStudentsByEmail($searchTerm);
-        }
-        elif($radioButton == "name"){
-            $foundStudents = searchStudentsByName($searchTerm);
-        }*/
-
-        /*
-            if(!empty($foundStudents)){
-                foreach($foundStudents as $foundStudent){
-                    echo '<script> alert(Found: '.$foundStudent['fName'].'" "'.$foundStudent['lName'].'"); </script>';
-                }
-            }
-        */
-	}
-</script>
-
 <main>
 	<!-- Course Header -->
 	<div style="width:94.5%; margin-left:2.5%">
@@ -129,38 +106,30 @@ ul.no-bullets {
 
 			<div style="padding-top: 2%">
 				<?php if($_SESSION["accType"] == "I") : ?>
-					<!-- Search Student -->
-					<div class="modal fade" id="searchModal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<div class="modal-body" id="searchModal">
-										<ul class="no-bullets" style="width:100%">
-											<li><h3>Search Students</h3></li>
-											<li><input type="text" class="form-control" style="width:80%; float:left" id="searchStudent" name="searchStudent" placeholder="Search student by email" required>
-											<button class="btn btn-primary" style="float:right" onclick="return search();">Search</button>
-										</ul>
+					<!-- Search Students -->
+					<div>
+						<form action="course.php" method="post">
+							<input type="hidden" name="action" value="searchStudents">
+								<div class="modal fade" id="searchModal">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<div class="modal-body ">
+													<ul class="no-bullets" style="width:100%">
+														<li><h3>Add Student</h3></li>
+														<li>
+															<input type="text" class="form-control" style="width:80%; float:left" id="searchTerm" name="searchTerm" placeholder="Search student by email" required>
+															<button type="submit" class="btn btn-primary" style="float:right">Search</button>
+														</li>
+													</ul>
+												</div>
+                                            </div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>
+						</form>
+						<button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#searchModal" style="width:25%; float:left;">Add Student</button>
 					</div>
-					<!-- Add Student -->
-					<div class="modal fade" id="addModal">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<div class="modal-body ">
-										<ul class="no-bullets" style="width:100%">
-											<li><h3>Found Students</h3></li>
-											<button class="btn btn-primary" href="#" data-toggle="modal" data-target="#addModal">Go Back</button>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#searchModal" style="width:25%; float:left;">Add Student</button>
 					<!-- Drop Student-->
 					<div style="padding-left: 30%">
 						<form action="course.php" method="post">
