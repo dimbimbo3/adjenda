@@ -59,6 +59,8 @@ switch($action){
         $startTime = $startHours.":".$startMinutes.":00"; //created start time from start hours and minutes
         $endTime = $endHours.":".$endMinutes.":00"; //created end time from end hours and minutes
 
+        //*NEED TO ADD SEMESTER CHECK IF DAYS ARE FOUND TO CONFLICT*
+        //*OR MAKE IT SO THE SEMESTER IS SET BASED ON THE CURRENT MONTH*
         //Adds the created course to the database after performing checks
         $courses = getCoursesByEmail($_SESSION["accEmail"]); //retrieves the instructor's exisiting courses
         $created = false; //boolean to represent if the course is successfully created or not
