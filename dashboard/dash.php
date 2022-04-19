@@ -59,25 +59,29 @@ switch($action){
         $startTime = $startHours.":".$startMinutes.":00"; //created start time from start hours and minutes
         $endTime = $endHours.":".$endMinutes.":00"; //created end time from end hours and minutes
 
-        //*NEED TO ADD SEMESTER CHECK IF DAYS ARE FOUND TO CONFLICT*
-        //*OR MAKE IT SO THE SEMESTER IS SET BASED ON THE CURRENT MONTH*
         //Adds the created course to the database after performing checks
         $courses = getCoursesByEmail($_SESSION["accEmail"]); //retrieves the instructor's exisiting courses
         $created = false; //boolean to represent if the course is successfully created or not
         //checks if the instructor already has an existing course with the given name
-        if(checkInstrCourseNames($courses, $courseName)){
-            echo "<script> alert('COURSE HAS NOT BEEN CREATED: You already have an existing course with the selected name.'); </script>";
-        }
-        else{
-            //checks if the new course is on the same day as an existing course
-            //and if so then checks if there is a time conflict
-            if(checkInstrCourseDaysTime($courses, $selectedDays, $startTime)){
-                echo "<script> alert('COURSE HAS NOT BEEN CREATED: Your selected start time conflicts with one of your existing courses.'); </script>";
+        if(!empty($courses)){
+            if(checkInstrCourseNames($courses, $courseName)){
+                echo "<script> alert('COURSE HAS NOT BEEN CREATED: You already have an existing course with the selected name.'); </script>";
             }
             else{
-                addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
-                $created = true;
+                //checks if the new course is on the same day as an existing course
+                //and if so then checks if there is a time conflict
+                if(checkInstrCourseDaysTime($courses, $selectedDays, $startTime)){
+                    echo "<script> alert('COURSE HAS NOT BEEN CREATED: Your selected start time conflicts with one of your existing courses.'); </script>";
+                }
+                else{
+                    addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
+                    $created = true;
+                }
             }
+        }
+        else{
+            addCourse($courseName, $_SESSION["accEmail"], $days, $startTime, $endTime);
+            $created = true;
         }
 
         //Lessons
