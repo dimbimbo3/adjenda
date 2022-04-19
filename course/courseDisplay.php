@@ -118,7 +118,7 @@ ul.no-bullets {
 													<ul class="no-bullets" style="width:100%">
 														<li><h3>Add Student</h3></li>
 														<li>
-															<input type="text" class="form-control" style="width:80%; float:left" id="searchTerm" name="searchTerm" placeholder="Search student by email" required>
+															<input type="text" class="form-control" style="width:80%; float:left" id="searchTerm" name="searchTerm" placeholder="Search students" required>
 															<button type="submit" class="btn btn-primary" style="float:right">Search</button>
 														</li>
 													</ul>
