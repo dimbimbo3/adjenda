@@ -106,7 +106,7 @@
                                                     <div class="form-group row">
                                                         <label for="semester" class="col-sm-4 col-form-label">Semester:</label>
                                                         <div class="col-sm">
-                                                            <select class="form-control" name="semester" required>
+                                                            <select class="form-control" id="semester" name="semester" disabled required>
                                                                 <option value="FALL">FALL (Sep to Dec)</option>
                                                                 <option value="SPRING">SPRING (Jan to May)</option>
                                                                 <option value="WINTER">WINTER (Dec to Jan)</option>
@@ -143,6 +143,24 @@
                                                 $("input:checkbox").not(":checked").attr("disabled",bol);
                                             }
                                         );
+                                        //Gets current month
+                                        var date = new Date();
+                                        var month = date.getMonth();
+                                        //Automatically selects semester based on current date
+                                        $(function(){
+                                            if((month >= 9) && (month < 12)){
+                                                $("#semester option[value='FALL']").attr('selected', 'selected');
+                                            }
+                                            else if(month == 12){
+                                                $("#semester option[value='WINTER']").attr('selected', 'selected');
+                                            }
+                                            else if((month >= 1) && (month < 5)){
+                                                $("#semester option[value='SPRING']").attr('selected', 'selected');
+                                            }
+                                            else if((month >= 5) && (month <= 7)){
+                                                $("#semester option[value='SUMMER']").attr('selected', 'selected');
+                                            }
+                                        });
                                     </script>
                                 </form>
                                 <button class="btn btn-primary btn-block" href="#" data-toggle="modal" data-target="#initialModal">Create New Course</button>
