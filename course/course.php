@@ -60,6 +60,8 @@ switch($action){
     case 'searchStudents':
         $course = getCourseByID($_SESSION['courseID']);
         $searchTerm = filter_input(INPUT_POST, 'searchTerm');
+        //$radioButton = filter_input(INPUT_POST, 'radioButton');
+
         $foundStudents = searchStudentsByEmail($searchTerm);
         /*if($radioButton == "email"){
             $foundStudents = searchStudentsByEmail($searchTerm);
