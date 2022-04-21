@@ -106,7 +106,7 @@
                                                     <div class="form-group row">
                                                         <label for="semester" class="col-sm-4 col-form-label">Semester:</label>
                                                         <div class="col-sm">
-                                                            <select class="form-control" id="semester" name="semester" disabled required>
+                                                            <select class="form-control" id="semester" name="semester" readonly required>
                                                                 <option value="FALL">FALL (Sep to Dec)</option>
                                                                 <option value="SPRING">SPRING (Jan to May)</option>
                                                                 <option value="WINTER">WINTER (Dec to Jan)</option>
@@ -160,6 +160,8 @@
                                             else if((month >= 5) && (month <= 7)){
                                                 $("#semester option[value='SUMMER']").attr('selected', 'selected');
                                             }
+                                            //disables the nonselected options
+                                            $("#semester option:not(:selected)").prop("disabled", true);
                                         });
                                     </script>
                                 </form>
