@@ -139,7 +139,7 @@ ul.no-bullets {
 										<div class="modal-content">
 											<div class="modal-header">
 												<ul class="no-bullets">
-													<li><h3>Drop Student</h3></li>
+													<li><h3>Existing Roster</h3></li>
 													<li><div class="table-wrapper-scroll-y my-custom-scrollbar-popup">
 														<table class="table table-bordered table-striped mb-0">
 															<tbody>
