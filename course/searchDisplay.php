@@ -78,18 +78,18 @@ ul.no-bullets {
 							<table class="table table-bordered table-striped mb-0">
 								<tbody>
 									<tr><h3>Students found with: '<?php echo $searchTerm ?>'</h3></tr>
-									<?php foreach($eligibleStudents as $eligibleStudent) : ?>
+									<?php for($i = 0; $i < sizeof($eligibleStudents); $i++) : ?>
 										<tr>
 											<th scope="row" style="padding-left: 15%">
 												<div class="students">
-													<input type="hidden" name="addedStuFNames[]" value="<?php echo $eligibleStudent['fName'] ?>">
-													<input type="hidden" name="addedStuLNames[]" value="<?php echo $eligibleStudent['lName'] ?>">
-													<input type="checkbox" class="form-check-input" name="addedStuEmails[]" value="<?php echo $eligibleStudent['email'] ?>" required>
-													<label class="form-check-label"><?php echo " ".$eligibleStudent['fName']." ".$eligibleStudent['lName']." (".$eligibleStudent['email'].")"; ?></label>
+													<input type="hidden" name="allStuFNames[]" value="<?php echo $eligibleStudents[$i]['fName'] ?>">
+													<input type="hidden" name="allStuLNames[]" value="<?php echo $eligibleStudents[$i]['lName'] ?>">
+													<input type="checkbox" class="form-check-input" name="selectedStuEmails[]" value="<?php echo $i.$eligibleStudents[$i]['email'] ?>" required>
+													<label class="form-check-label"><?php echo " ".$eligibleStudents[$i]['fName']." ".$eligibleStudents[$i]['lName']." (".$eligibleStudents[$i]['email'].")"; ?></label>
 												</div>
 											</th>
 										</tr>
-									<?php endforeach; ?>
+									<?php endfor; ?>
 								</tbody>
 							</table>
 						</div></li>
@@ -100,22 +100,22 @@ ul.no-bullets {
 				</form>
 				<!--Form Scripting-->
 				<script type="text/javascript">
-                            //Requires at least one checkbox be selected from students
-                            $(function(){
-                                var requiredCheckboxes = $('.students :checkbox[required]');
-								var addButton = $('.add :submit[disabled]');
-                                requiredCheckboxes.change(function(){
-                                    if(requiredCheckboxes.is(':checked')) {
-                                        requiredCheckboxes.removeAttr('required');
-										addButton.removeAttr('disabled');
-                                    } 
-                                    else {
-                                        requiredCheckboxes.attr('required', 'required');
-										addButton.attr('disabled', 'disabled');
-                                    }
-                                });
-                            });
-                        </script>
+					//Requires at least one checkbox be selected from students
+					$(function(){
+						var requiredCheckboxes = $('.students :checkbox[required]');
+						var addButton = $('.add :submit[disabled]');
+						requiredCheckboxes.change(function(){
+							if(requiredCheckboxes.is(':checked')) {
+								requiredCheckboxes.removeAttr('required');
+								addButton.removeAttr('disabled');
+							} 
+							else {
+								requiredCheckboxes.attr('required', 'required');
+								addButton.attr('disabled', 'disabled');
+							}
+						});
+					});
+                </script>
 			<?php else: ?>
 				<h3>No students found with: '<?php echo $searchTerm ?>'</h3>
 			<?php endif; ?>

@@ -79,15 +79,30 @@ switch($action){
         include('searchDisplay.php');
         break;
     case 'addStudents':
-        $addedStudents = $_POST['addedStuEmails']; //array of student emails to be added
-        $addedStuFNames = $_POST['addedStuFNames']; //array of student fNames to be added
-        $addedStuLNames = $_POST['addedStuLNames']; //array of student lNames to be added
+        $selectedStuEmails = $_POST['selectedStuEmails']; //array of student emails that were selected
+        $allStuFNames = $_POST['allStuFNames']; //array of all student fNames found in the search
+        $allStuLNames = $_POST['allStuLNames']; //array of all student lNames found in the search
 
-        //cycle through array and call addStudent function for each student
-        for($i = 0; $i < sizeof($addedStudents); $i++){
-            $enrollmentCode = generateEnrollmentCode(); //generated unique enrollment code
-            echo '<script> alert("'.$addedStuFNames[$i].' '.$addedStuLNames[$i].' ('.$addedStudents[$i].') has been added to the course."); </script>';
-            addToRoster($_SESSION['courseID'], $addedStudents[$i], $addedStuFNames[$i], $addedStuLNames[$i], $enrollmentCode);
+        //cycles through array of names to find the students' names associated with the selected emails
+        for($i = 0; $i < sizeof($allStuFNames); $i++){
+            $match = false; //flag for determining if the iterated names match with one of the selected emails
+            //cycles through array of selected emails
+            for($j = 0; $j < sizeof($selectedStuEmails); $j++){
+                $index = substr($selectedStuEmails[$j], 0, 1); //retrieves the original index of each of all the found emails from the first character of each string
+                //if the original index of the email matches with the names
+                //then mark flag and break out of loop
+                if($index == $i){
+                    $addedEmail = substr($selectedStuEmails[$j], 1);
+                    $match = true;
+                    break;
+                }
+            }
+            //if the index of the email matches with the names, then add that student's name and email to the roster
+            if($match){
+                $enrollmentCode = generateEnrollmentCode(); //generated unique enrollment code
+                echo '<script> alert("'.$allStuFNames[$i].' '.$allStuLNames[$i].' ('.$addedEmail.') has been added to the course."); </script>';
+                addToRoster($_SESSION['courseID'], $addedEmail, $allStuFNames[$i], $allStuLNames[$i], $enrollmentCode);
+            }
         }
 
         echo "<script> window.location='../course/course.php'; </script>"; //return to course page
