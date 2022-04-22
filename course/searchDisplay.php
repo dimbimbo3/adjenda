@@ -94,7 +94,7 @@ ul.no-bullets {
 							</table>
 						</div></li>
 						<div class="add">
-							<li style="padding-top: 2%"><button type="submit" class="btn btn-primary btn-block" style="width:25%; float:left;" disabled>Add Students</button></li>
+							<li style="padding-top: 2%"><button type="submit" class="btn btn-primary btn-block" style="width:25%; float:left;" disabled>Enroll Students</button></li>
 						</div>
 					</ul>
 				</form>
