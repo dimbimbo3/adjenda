@@ -60,15 +60,15 @@ switch($action){
     case 'searchStudents':
         $course = getCourseByID($_SESSION['courseID']);
         $searchTerm = filter_input(INPUT_POST, 'searchTerm');
-        //$radioButton = filter_input(INPUT_POST, 'radioButton');
+        $radioButton = filter_input(INPUT_POST, 'radioButton');
 
-        $foundStudents = searchStudentsByEmail($searchTerm);
-        /*if($radioButton == "email"){
+        //determines if the search should be by name or email
+        if($radioButton == "email"){
             $foundStudents = searchStudentsByEmail($searchTerm);
         }
-        elif($radioButton == "name"){
-            $foundStudents = searchStudentsByName($searchTerm);
-        }*/
+        else if($radioButton == "name"){
+            $foundStudents = searchStudentsByLastName($searchTerm);
+        }
 
         //checks if each student found by the search is already in the class or not
         foreach($foundStudents as $foundStudent){

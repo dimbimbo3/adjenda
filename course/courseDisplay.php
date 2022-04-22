@@ -118,6 +118,18 @@ ul.no-bullets {
 													<ul class="no-bullets" style="width:100%">
 														<li><h3>Add Student</h3></li>
 														<li>
+																<div class="form-check form-check-inline">
+																	<input class="form-check-input" type="radio" name="radioButton" value="email" checked required>
+																	<label class="form-check-label">
+																		By Email
+																	</label>
+																</div>
+																<div class="form-check form-check-inline">
+																	<input class="form-check-input" type="radio" name="radioButton" value="name">
+																	<label class="form-check-label">
+																		By Last Name
+																	</label>
+																</div>
 															<input type="text" class="form-control" style="width:80%; float:left" id="searchTerm" name="searchTerm" placeholder="Search students" required>
 															<button type="submit" class="btn btn-primary" style="float:right">Search</button>
 														</li>
