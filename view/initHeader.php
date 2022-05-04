@@ -14,6 +14,42 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" type="text/css" href="../main.css">
+	<style>
+        /*CSS styles for elements specific to the navigation bar */
+        .mainNavBarUL{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #0079C2;
+            /*position: -webkit-sticky; /*Stickyness
+            position: sticky; */
+            top: 0;
+            z-index: 1000;
+        }
+        .mainNavBarLI {
+            float: left;
+            border-right:1px solid white;
+        }
+        .mainNavBarLI:last-child {
+            border-right:1px solid white;
+            border-left:1px solid white;
+        }
+        .mainNavBarLI:first-child {
+            border-right:0px solid white;
+            border-left:0px solid white;
+        }
+        .mainNavBarLI a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .mainNavBarLI a:hover {
+            background-color: #111;
+        }
+    </style>
 </head>
 
 <!-- the body section -->
