@@ -1,5 +1,8 @@
 <!--Includes the defined header-->
-<?php include '../view/header.php'; ?>
+<?php
+	$title = $course['name'];
+	include '../view/header.php'; 
+?>
 
 <style>
 	.my-custom-scrollbar {

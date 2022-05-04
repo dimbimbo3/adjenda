@@ -1,5 +1,8 @@
 <!--Includes the defined header-->
-<?php include '../view/header.php'; ?>
+<?php
+    $title = 'Dashboard';
+    include '../view/header.php'; 
+?>
 <?php require_once('../model/rosterFunctions.php'); ?>
 
 <main>
