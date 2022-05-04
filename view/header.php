@@ -32,7 +32,7 @@
         <!--Navbar START-->
         <ul class = "mainNavBarUL">
             <a class="navbar-brand"><img src="../images/logo.png" height="42" width="auto" alt="logo"></a>
-            <li class = "mainNavBarLI" style="float:right"><a href="../login/login.php">LOGOUT</a></li>
+            <li class = "mainNavBarLI" style="float:right"><a href="../login/login.php"><b>LOGOUT</b></a></li>
             <li class = "mainNavBarLI" style="float:right"><a href="#">Settings</a></li>
             <li class = "mainNavBarLI" style="float:right"><a href="../dashboard/dash.php">Dashboard</a></li>
         </ul>
