@@ -2,7 +2,7 @@
 <html>
 <!-- the head section -->
 <head>
-	<title>Login/Register</title>
+	<title>Ajenda | Login/Register</title>
 	<meta charset = "utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<!-- Bootstrap CSS -->
@@ -17,13 +17,12 @@
 </head>
 
 <!-- the body section -->
-<body style="background-color: #58AAFF">
+<body background="../images/msuPic.jpg" style="height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover">
 	<header>
 		<!--Navbar START-->
-		<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #0079C2;">
-			<a class="navbar-brand">
-				<img src="../images/logo.png" height="60" width="auto" alt="logo">
-			</a>
-		</nav>
+		<ul class = "mainNavBarUL">
+			<a class="navbar-brand"><img src="../images/logo.png" height="42" width="auto" alt="logo"></a>
+		</ul>
 		<!--Navbar END-->
 	</header>
+</body>
