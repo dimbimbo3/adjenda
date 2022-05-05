@@ -53,7 +53,7 @@
 </head>
 
 <!-- the body section -->
-<body background="../images/msuPic.jpg" style="height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover">
+<body background="../images/msuPic.jpg" style="height: 100%; background-position: center; background-size: cover">
 	<header>
 		<!--Navbar START-->
 		<ul class = "mainNavBarUL">
