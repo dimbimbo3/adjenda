@@ -10,3 +10,7 @@ input:valid {
 header {
 	padding-bottom: 3em;
 }
+.navbar {
+	margin:0 !important;
+	padding: 0px !important;
+}
