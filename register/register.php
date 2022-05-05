@@ -48,4 +48,4 @@
 </main>
 
 <!--Includes the defined footer-->
-<?php include '../view/initFooter.php'; ?>
+<?php include '../view/footer.php'; ?>
