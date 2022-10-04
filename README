@@ -1,4 +1,3 @@
-# Adjenda
 Final Project for CSIT 415 (Software Engineering II) at MSU
 
 Adjenda, is a student portal that institutions and individual instructors can provide to their students to better organize and conduct classes and assignments. 
@@ -16,6 +15,9 @@ Built with
 
 ------------------------------------------------------------------------
 
-Team
+Team & Contributions
 
--Dan Imbimbo -Jake Breitfeller -Tristan Somcio -Kevin Sanchez
+Dan Imbimbo (Login, Sign-up, Dashboard, Course Creation, Database Creation & Functionality, Attendance Code Checking & Log Display, Adding/Searching Students, Testing)
+Jake Breitfeller (Course Page Navigation Bar, Course Page UI, Course Roster Scrollable Lists, Removing Students, Attendance Code Generation, Testing)
+Tristan Somcio (Primary Navigation Bar, UI Elements, Testing)
+Kevin Sanchez (Testing)
