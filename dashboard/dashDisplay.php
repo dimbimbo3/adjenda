@@ -13,6 +13,7 @@
         <!--Course Card Counter-->
         <?php $counter = 0 ?>
         <!--Table formatting for each course-->
+        <div class="table-responsive">
         <table style="border-collapse: separate; border-spacing: 14px;">
                 <!--checks if the user is an instructor, if so displays course creation card-->
                 <?php if($_SESSION["accType"] == "I") : ?>
@@ -78,21 +79,20 @@
                                                                 <option value="20">(PM) 08</option>
                                                             </select>
                                                         </div>
-                                                        <h4>:</h4>
                                                         <div class="col-sm">
                                                             <select class="form-control" name="startMinutes" required>
-                                                                <option value="00">00</option>
-                                                                <option value="05">05</option>
-                                                                <option value="10">10</option>
-                                                                <option value="15">15</option>
-                                                                <option value="20">20</option>
-                                                                <option value="25">25</option>
-                                                                <option value="30">30</option>
-                                                                <option value="35">35</option>
-                                                                <option value="40">40</option>
-                                                                <option value="45">45</option>
-                                                                <option value="50">50</option>
-                                                                <option value="55">55</option>
+                                                                <option value="00">: 00</option>
+                                                                <option value="05">: 05</option>
+                                                                <option value="10">: 10</option>
+                                                                <option value="15">: 15</option>
+                                                                <option value="20">: 20</option>
+                                                                <option value="25">: 25</option>
+                                                                <option value="30">: 30</option>
+                                                                <option value="35">: 35</option>
+                                                                <option value="40">: 40</option>
+                                                                <option value="45">: 45</option>
+                                                                <option value="50">: 50</option>
+                                                                <option value="55">: 55</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -212,6 +212,7 @@
                     </td>
                 <?php endif; ?>
         </table>
+        </div>
 	</div>
 </main>
 
