@@ -22,70 +22,40 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" type="text/css" href="../main.css">
-    <style>
-        /*Header CSS for background images.*/
-        .header{
-            height: 100%;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/msuSunset.jpg);
-            background-position: top;
-            background-repeat: no-repeat;
-            background-attachment: fixed;  
-            background-size: contain;
-
-            padding: 100px;
-            text-align: center;
-            color: #d0bb94;
-            font-size: 25px; 
-        }
-        /*CSS styles for elements specific to the navigation bar */
-        .mainNavBarUL{
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #0079C2;
-            /*position: -webkit-sticky; /*Stickyness
-            position: sticky; */
-            top: 0;
-            z-index: 1000;
-        }
-        .mainNavBarLI {
-            float: left;
-            border-right:1px solid white;
-        }
-        .mainNavBarLI:last-child {
-            border-right:1px solid white;
-            border-left:1px solid white;
-        }
-        .mainNavBarLI:first-child {
-            border-right:0px solid white;
-            border-left:0px solid white;
-        }
-        .mainNavBarLI a {
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        .mainNavBarLI a:hover {
-            background-color: #111;
-        }
-    </style>
 </head>
 
 <!-- the body section -->
 <body style="background-color:#FFFFFF;">
     <header>
-        <!--Div for background image-->
-		<div class="header"></div>
         <!--Navbar START-->
-        <ul class = "mainNavBarUL">
-            <a class="navbar-brand"><img src="../images/logo.png" height="42" width="auto" alt="logo"></a>
-            <li class = "mainNavBarLI" style="float:right"><a href="../login/login.php"><b>LOGOUT</b></a></li>
-            <li class = "mainNavBarLI" style="float:right"><a href="#">Settings</a></li>
-            <li class = "mainNavBarLI" style="float:right"><a href="../dashboard/dash.php">Dashboard</a></li>
-        </ul>
-        <!--Navbar END-->
+		<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color: #0079C2;">
+			<a class="navbar-brand">
+				<img src="../images/logo.png" height="42" width="auto" alt="logo">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsingNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link" style="padding-left: 5%" href="../dashboard/dash.php">
+							dashboard
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" style="padding-left: 5%" href="#">
+							settings
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" style="padding-left: 5%; font-weight:bold" href="../login/login.php">
+							LOGOUT
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!--Navbar END-->	
     </header>
 </body>
