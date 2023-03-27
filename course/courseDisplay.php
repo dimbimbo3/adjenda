@@ -14,7 +14,7 @@
 .my-custom-scrollbar-popup {
 	position: relative;
 	height: 350px;
-	width: 468px;
+	width: 445px;
 	overflow: auto;
 }
 ul.no-bullets {
@@ -48,29 +48,29 @@ ul.no-bullets {
 	</div>
 
 	<!-- Course Information -->
-	<div style="width:94.5%; height:600px; margin-left:2.5%; background-color: #EBEBEC; border-radius: 0.5em;">
+	<div style="width:94.5%; height:600px; margin-left:2.5%; background-color: #EBEBEC; border-radius: 0.5em; overflow:auto; min-width: 468px">
 		<header>
-			<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #0079C2; border-radius: 0.5em; height: 8%;">
+			<nav class="navbar navbar-expand navbar-dark sticky-top" style="background-color: #0079C2; border-radius: 0.5em; height: 8%; min-width: 650px">
 				<ul class="navbar-nav" style="margin-left:2%">
-					<li class="nav-item">
-						<a class="nav-link" style="color: white;" href="../course/course.php">
+					<li class="nav-item active">
+						<a class="nav-link" href="../course/course.php">
 							Class Roster
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" style="color: white;" href="#">
+						<a class="nav-link" href="#">
 							Groups
 						</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" style="color: white;" href="#">
+						<a class="nav-link" href="#">
 							Polls
 						</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link" style="color: white;">
+						<a class="nav-link">
 							<?php if($_SESSION["accType"] == "I") : ?>
 								<?php
 								//NEED TO SWITCH CHECK TO IF CURRENT LESSON'S ATTENDNACE CODE FIELD IS NULL OR NOT
@@ -88,7 +88,7 @@ ul.no-bullets {
 		</header>
 
 		<!-- Class Roster -->
-		<div style="padding-left: 5%; padding-bottom: 3%; float: left" width="100%">
+		<div style="padding-left: 5%; padding-bottom: 3%; float: left">
 			<div class="table-wrapper-scroll-y my-custom-scrollbar" >
 				<table class="table table-bordered table-striped mb-0">
 					<tbody>

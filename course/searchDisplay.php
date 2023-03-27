@@ -14,7 +14,7 @@
 .my-custom-scrollbar-popup {
 	position: relative;
 	height: 350px;
-	width: 468px;
+	width: 445px;
 	overflow: auto;
 }
 ul.no-bullets {
@@ -48,9 +48,9 @@ ul.no-bullets {
 	</div>
 
 	<!-- Course Information -->
-	<div style="width:94.5%; height:600px; margin-left:2.5%; background-color: #EBEBEC; border-radius: 0.5em;">
+	<div style="width:94.5%; height:600px; margin-left:2.5%; background-color: #EBEBEC; border-radius: 0.5em; overflow:auto; min-width: 465px">
 		<header>
-			<nav class="navbar navbar-expand-sm navbar-light sticky-top" style="background-color: #0079C2; border-radius: 0.5em; height: 8%;">
+			<nav class="navbar navbar-expand navbar-dark sticky-top" style="background-color: #0079C2; border-radius: 0.5em; height: 8%; min-width: 650px">
 				<ul class="navbar-nav" style="margin-left:2%">
 					<li class="nav-item">
 						<a class="nav-link" style="color: white;" href="../course/course.php">
