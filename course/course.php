@@ -88,13 +88,26 @@ switch($action){
             $match = false; //flag for determining if the iterated names match with one of the selected emails
             //cycles through array of selected emails
             for($j = 0; $j < sizeof($selectedStuEmails); $j++){
-                $index = substr($selectedStuEmails[$j], 0, 1); //retrieves the original index of each of all the found emails from the first character of each string
-                //if the original index of the email matches with the names
-                //then mark flag and break out of loop
-                if($index == $i){
-                    $addedEmail = substr($selectedStuEmails[$j], 1);
-                    $match = true;
-                    break;
+                $index = substr($selectedStuEmails[$j], 0, 2); //retrieves the first two characters of each of all the found emails which contains the original index
+                //checks if the 2nd character in the retrieved substring is a letter or a digit
+                //else if it is not a digit then just checks the first character as the index
+                if(is_numeric($index[1])){
+                    //if the two digit index of the email matches with the names
+                    //then mark flag and break out of loop
+                    if($index == $i){
+                        $addedEmail = substr($selectedStuEmails[$j], 2);
+                        $match = true;
+                        break;
+                    }
+                }
+                else{
+                    //if the one digit index of the email matches with the names
+                    //then mark flag and break out of loop
+                    if($index[0] == $i){
+                        $addedEmail = substr($selectedStuEmails[$j], 1);
+                        $match = true;
+                        break;
+                    }
                 }
             }
             //if the index of the email matches with the names, then add that student's name and email to the roster
@@ -116,6 +129,10 @@ switch($action){
             dropStudent($removedStudents[$i], $_SESSION['courseID']);
         }
 
+        echo "<script> window.location='../course/course.php'; </script>"; //return to course page
+        break;
+    case 'enteredCode':
+        //PLACEHOLDER - no functionality implemented
         echo "<script> window.location='../course/course.php'; </script>"; //return to course page
         break;
 }
