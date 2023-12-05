@@ -31,7 +31,7 @@
 			</div>
 			<div class="form-group">
 				<label for="pass">Password:</label>
-				<input type="password" class ="form-control" id="pass" name="pass" placeholder="Enter password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*+~=?\|<>/]).{8,}" required>
+				<input type="password" class ="form-control" id="pass" name="pass" placeholder="Enter password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}" required>
 				<small id="passwordHelp" class="form-text text-muted">Requires length of at least 8 characters </br> 
 					(one lowercase letter, one uppercase letter, one number, one special character)</small>
 			</div>
